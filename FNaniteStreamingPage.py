@@ -141,7 +141,7 @@ class FCluster:
 			self.NormalPrecision,
 			self.TangentPrecision
 		) = read_bitfield(read_u32(f), 4,5,5,5,5,4,4)
-		self.PosPrecision -= NANITE_MIN_POSITION_PRECISION
+		self.PosPrecision += NANITE_MIN_POSITION_PRECISION
 		# SOA2
 		self.LODBounds = FVector4f(f)
 		# SOA3
