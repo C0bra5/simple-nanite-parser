@@ -22,4 +22,5 @@ A modified version of FModel with the fixes I've made for nanite (see instructio
 
 ## The script in action:
 
-https://github.com/user-attachments/assets/8cffb822-dc5b-457d-82c7-2a3f8d1e072c
+https://github.com/user-attachments/assets/2b7efd84-e7a1-452a-ae0a-ae956422734c
+
