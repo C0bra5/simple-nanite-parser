@@ -2,7 +2,7 @@
 A simple parser for cooked Unreal Engine 5.3+ static meshes that uses Nanite with maximum quality. FModel only exports the fallback mesh which tends to be very low quality.
 
 ## Requirements:
-- [Python 3.12](https://www.python.org/downloads/release/python-31210/) (you'll need to build compushady yourself if you use something older)
+- [Python 3.12](https://www.python.org/downloads/release/python-31210/) (you'll need to build compushady yourself if you use something newer)
 - [DotNET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) (to build FModel and CUE4Parse)
 - A modified version of FModel with the fixes I've made for nanite (see instructions below)
 - A bit of storage, the .obj files this generates can get quite chunky (100MB+)
