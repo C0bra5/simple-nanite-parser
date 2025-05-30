@@ -1,0 +1,3010 @@
+[
+  {
+    "Type": "BodySetup",
+    "Name": "BodySetup_1",
+    "Outer": "mat_index_testing_cube",
+    "Class": "UScriptClass'BodySetup'",
+    "Flags": "RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "Properties": {
+      "AggGeom": {
+        "ConvexElems": [
+          {
+            "VertexData": [
+              {
+                "X": 323.7,
+                "Y": 136.53918,
+                "Z": -136.5392
+              },
+              {
+                "X": 323.7,
+                "Y": -136.5392,
+                "Z": -136.53922
+              },
+              {
+                "X": 323.7,
+                "Y": -136.53922,
+                "Z": 136.53918
+              },
+              {
+                "X": 323.7,
+                "Y": 136.53918,
+                "Z": 136.5392
+              },
+              {
+                "X": -299.19376,
+                "Y": -161.04544,
+                "Z": -161.05621
+              },
+              {
+                "X": -299.19376,
+                "Y": 161.04544,
+                "Z": -161.05621
+              },
+              {
+                "X": -299.19376,
+                "Y": 161.04546,
+                "Z": 161.05621
+              },
+              {
+                "X": -299.19376,
+                "Y": -161.04544,
+                "Z": 161.05621
+              },
+              {
+                "X": -171.43918,
+                "Y": 288.80002,
+                "Z": -171.4392
+              },
+              {
+                "X": 171.43918,
+                "Y": 288.80002,
+                "Z": -171.43918
+              },
+              {
+                "X": 171.43921,
+                "Y": 288.80002,
+                "Z": 171.43918
+              },
+              {
+                "X": -171.43918,
+                "Y": 288.80002,
+                "Z": 171.43916
+              },
+              {
+                "X": 146.9392,
+                "Y": -313.30002,
+                "Z": -146.93918
+              },
+              {
+                "X": -146.93916,
+                "Y": -313.30002,
+                "Z": -146.93916
+              },
+              {
+                "X": -146.93924,
+                "Y": -313.30002,
+                "Z": 146.9392
+              },
+              {
+                "X": 146.93921,
+                "Y": -313.30002,
+                "Z": 146.93921
+              },
+              {
+                "X": -142.7392,
+                "Y": 142.7392,
+                "Z": 317.50003
+              },
+              {
+                "X": 142.73917,
+                "Y": 142.73918,
+                "Z": 317.50003
+              },
+              {
+                "X": 142.7392,
+                "Y": -142.73918,
+                "Z": 317.50003
+              },
+              {
+                "X": -142.73917,
+                "Y": -142.73917,
+                "Z": 317.50003
+              },
+              {
+                "X": -167.2392,
+                "Y": -167.23921,
+                "Z": -293.0
+              },
+              {
+                "X": 167.23918,
+                "Y": -167.23918,
+                "Z": -293.0
+              },
+              {
+                "X": 167.23923,
+                "Y": 167.2392,
+                "Z": -293.0
+              },
+              {
+                "X": -167.23923,
+                "Y": 167.2392,
+                "Z": -293.0
+              },
+              {
+                "X": -230.11421,
+                "Y": 230.125,
+                "Z": 230.125
+              },
+              {
+                "X": 230.11423,
+                "Y": 230.125,
+                "Z": 230.125
+              },
+              {
+                "X": 230.11423,
+                "Y": -230.12497,
+                "Z": -230.12498
+              },
+              {
+                "X": -230.11421,
+                "Y": -230.125,
+                "Z": -230.125
+              },
+              {
+                "X": -230.1142,
+                "Y": 230.125,
+                "Z": -230.125
+              },
+              {
+                "X": 230.11423,
+                "Y": 230.125,
+                "Z": -230.125
+              },
+              {
+                "X": 230.11423,
+                "Y": -230.12502,
+                "Z": 230.12497
+              },
+              {
+                "X": -230.11423,
+                "Y": -230.12497,
+                "Z": 230.12498
+              }
+            ],
+            "IndexData": [
+              30,
+              15,
+              12,
+              19,
+              16,
+              7,
+              25,
+              16,
+              17,
+              13,
+              12,
+              15,
+              18,
+              30,
+              2,
+              25,
+              17,
+              18,
+              29,
+              9,
+              10,
+              24,
+              8,
+              28,
+              29,
+              28,
+              8,
+              14,
+              30,
+              31,
+              2,
+              1,
+              0,
+              18,
+              2,
+              3,
+              14,
+              31,
+              7,
+              6,
+              5,
+              7,
+              24,
+              25,
+              10,
+              22,
+              29,
+              1,
+              29,
+              3,
+              0,
+              3,
+              2,
+              0,
+              30,
+              1,
+              2,
+              30,
+              12,
+              1,
+              11,
+              24,
+              10,
+              25,
+              18,
+              3,
+              6,
+              28,
+              5,
+              29,
+              8,
+              9,
+              23,
+              4,
+              5,
+              22,
+              28,
+              29,
+              29,
+              0,
+              1,
+              8,
+              10,
+              9,
+              27,
+              12,
+              13,
+              26,
+              1,
+              12,
+              21,
+              22,
+              26,
+              26,
+              22,
+              1,
+              27,
+              26,
+              12,
+              14,
+              15,
+              30,
+              27,
+              20,
+              21,
+              20,
+              22,
+              21,
+              27,
+              21,
+              26,
+              7,
+              5,
+              4,
+              19,
+              18,
+              16,
+              18,
+              17,
+              16,
+              19,
+              30,
+              18,
+              31,
+              30,
+              19,
+              23,
+              20,
+              4,
+              23,
+              5,
+              28,
+              27,
+              4,
+              20,
+              14,
+              27,
+              13,
+              14,
+              13,
+              15,
+              31,
+              19,
+              7,
+              23,
+              22,
+              20,
+              23,
+              28,
+              22,
+              14,
+              4,
+              27,
+              14,
+              7,
+              4,
+              25,
+              29,
+              10,
+              25,
+              3,
+              29,
+              24,
+              16,
+              25,
+              6,
+              24,
+              28,
+              11,
+              8,
+              24,
+              11,
+              10,
+              8,
+              6,
+              16,
+              24,
+              6,
+              7,
+              16
+            ],
+            "ElemBox": {
+              "Min": {
+                "X": -299.19376,
+                "Y": -313.30002,
+                "Z": -293.0
+              },
+              "Max": {
+                "X": 323.7,
+                "Y": 288.80002,
+                "Z": 317.50003
+              },
+              "IsValid": 1
+            },
+            "Transform": {
+              "Rotation": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "W": 1.0,
+                "IsNormalized": true,
+                "Size": 1.0,
+                "SizeSquared": 1.0
+              },
+              "Translation": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "Scale3D": {
+                "X": 1.0,
+                "Y": 1.0,
+                "Z": 1.0
+              }
+            },
+            "RestOffset": 0.0,
+            "Name": "None",
+            "bContributeToMass": true,
+            "CollisionEnabled": "ECollisionEnabled::QueryAndPhysics"
+          }
+        ]
+      },
+      "DefaultInstance": {
+        "ObjectType": "ECollisionChannel::ECC_WorldStatic",
+        "CollisionProfileName": "BlockAll"
+      }
+    },
+    "BodySetupGuid": "190576A743CB33270C5F9C9882DEB60B",
+    "CookedFormatData": {
+      "PhysXPC": {
+        "BulkDataFlags": "BULKDATA_SingleUse | BULKDATA_ForceInlinePayload",
+        "ElementCount": 295376,
+        "SizeOnDisk": 295376,
+        "OffsetInFile": "0x68C"
+      }
+    }
+  },
+  {
+    "Type": "NavCollision",
+    "Name": "NavCollision_2",
+    "Outer": "mat_index_testing_cube",
+    "Class": "UScriptClass'NavCollision'",
+    "Flags": "RF_Transactional | RF_WasLoaded | RF_LoadCompleted",
+    "CookedFormatData": {
+      "NavCollision_Chaos": {
+        "BulkDataFlags": "BULKDATA_SingleUse | BULKDATA_ForceInlinePayload",
+        "ElementCount": 1513,
+        "SizeOnDisk": 1513,
+        "OffsetInFile": "0x32"
+      }
+    }
+  },
+  {
+    "Type": "StaticMesh",
+    "Name": "mat_index_testing_cube",
+    "Class": "UScriptClass'StaticMesh'",
+    "Flags": "RF_Public | RF_Standalone | RF_WasLoaded | RF_LoadCompleted",
+    "Properties": {
+      "StaticMaterials": [
+        {
+          "MaterialInterface": {
+            "ObjectName": "Material'Material'",
+            "ObjectPath": "/Game/Material.0"
+          },
+          "MaterialSlotName": "Material",
+          "ImportedMaterialSlotName": "Material",
+          "UVChannelData": {
+            "bInitialized": true,
+            "bOverrideDensities": false,
+            "LocalUVDensities": 405.5855,
+            "LocalUVDensities[1]": 405.61517,
+            "LocalUVDensities[2]": 405.62933,
+            "LocalUVDensities[3]": 405.62338
+          }
+        },
+        {
+          "MaterialInterface": {
+            "ObjectName": "Material'Material_001'",
+            "ObjectPath": "/Game/Material_001.0"
+          },
+          "MaterialSlotName": "Material_001",
+          "ImportedMaterialSlotName": "Material_001",
+          "UVChannelData": {
+            "bInitialized": true,
+            "bOverrideDensities": false,
+            "LocalUVDensities": 417.92194,
+            "LocalUVDensities[1]": 417.92743,
+            "LocalUVDensities[2]": 417.92368,
+            "LocalUVDensities[3]": 417.9175
+          }
+        },
+        {
+          "MaterialInterface": {
+            "ObjectName": "Material'Material_002'",
+            "ObjectPath": "/Game/Material_002.0"
+          },
+          "MaterialSlotName": "Material_002",
+          "ImportedMaterialSlotName": "Material_002",
+          "UVChannelData": {
+            "bInitialized": true,
+            "bOverrideDensities": false,
+            "LocalUVDensities": 419.89548,
+            "LocalUVDensities[1]": 420.02615,
+            "LocalUVDensities[2]": 420.02518,
+            "LocalUVDensities[3]": 420.00366
+          }
+        },
+        {
+          "MaterialInterface": {
+            "ObjectName": "Material'Material_003'",
+            "ObjectPath": "/Game/Material_003.0"
+          },
+          "MaterialSlotName": "Material_003",
+          "ImportedMaterialSlotName": "Material_003",
+          "UVChannelData": {
+            "bInitialized": true,
+            "bOverrideDensities": false,
+            "LocalUVDensities": 408.65967,
+            "LocalUVDensities[1]": 408.65894,
+            "LocalUVDensities[2]": 408.66055,
+            "LocalUVDensities[3]": 408.66135
+          }
+        },
+        {
+          "MaterialInterface": {
+            "ObjectName": "Material'WorldGridMaterial'",
+            "ObjectPath": "/Engine/EngineMaterials/WorldGridMaterial.0"
+          },
+          "MaterialSlotName": "WorldGridMaterial",
+          "ImportedMaterialSlotName": "WorldGridMaterial",
+          "UVChannelData": {
+            "bInitialized": true,
+            "bOverrideDensities": false,
+            "LocalUVDensities": 0.0,
+            "LocalUVDensities[1]": 0.0,
+            "LocalUVDensities[2]": 0.0,
+            "LocalUVDensities[3]": 0.0
+          }
+        }
+      ],
+      "LightmapUVDensity": 412.96014,
+      "LightMapResolution": 64,
+      "LightMapCoordinateIndex": 3,
+      "ExtendedBounds": {
+        "Origin": {
+          "X": 12.25,
+          "Y": -12.25,
+          "Z": 12.250015
+        },
+        "BoxExtent": {
+          "X": 311.35,
+          "Y": 300.95,
+          "Z": 305.15002
+        },
+        "SphereRadius": 419.67400426222486
+      }
+    },
+    "BodySetup": {
+      "ObjectName": "BodySetup'mat_index_testing_cube:BodySetup_1'",
+      "ObjectPath": "/Game/mat_index_testing_cube.0"
+    },
+    "NavCollision": {
+      "ObjectName": "NavCollision'mat_index_testing_cube:NavCollision_2'",
+      "ObjectPath": "/Game/mat_index_testing_cube.1"
+    },
+    "LightingGuid": "F976109E-4770092F-848B1D9D-80CBC053",
+    "RenderData": {
+      "LODs": [
+        {
+          "Sections": [
+            {
+              "MaterialIndex": 0,
+              "FirstIndex": 0,
+              "NumTriangles": 1451,
+              "MinVertexIndex": 2,
+              "MaxVertexIndex": 7199,
+              "bEnableCollision": true,
+              "bCastShadow": true,
+              "bForceOpaque": false,
+              "bVisibleInRayTracing": true
+            },
+            {
+              "MaterialIndex": 1,
+              "FirstIndex": 8643,
+              "NumTriangles": 1380,
+              "MinVertexIndex": 1,
+              "MaxVertexIndex": 7199,
+              "bEnableCollision": true,
+              "bCastShadow": true,
+              "bForceOpaque": false,
+              "bVisibleInRayTracing": true
+            },
+            {
+              "MaterialIndex": 2,
+              "FirstIndex": 12783,
+              "NumTriangles": 1367,
+              "MinVertexIndex": 0,
+              "MaxVertexIndex": 7199,
+              "bEnableCollision": true,
+              "bCastShadow": true,
+              "bForceOpaque": false,
+              "bVisibleInRayTracing": true
+            },
+            {
+              "MaterialIndex": 3,
+              "FirstIndex": 4353,
+              "NumTriangles": 1430,
+              "MinVertexIndex": 1,
+              "MaxVertexIndex": 7199,
+              "bEnableCollision": true,
+              "bCastShadow": true,
+              "bForceOpaque": false,
+              "bVisibleInRayTracing": true
+            },
+            {
+              "MaterialIndex": 4,
+              "FirstIndex": 16884,
+              "NumTriangles": 80,
+              "MinVertexIndex": 0,
+              "MaxVertexIndex": 7199,
+              "bEnableCollision": true,
+              "bCastShadow": true,
+              "bForceOpaque": false,
+              "bVisibleInRayTracing": true
+            }
+          ],
+          "MaxDeviation": 0.0,
+          "PositionVertexBuffer": {
+            "Stride": 12,
+            "NumVertices": 7200
+          },
+          "VertexBuffer": {
+            "NumTexCoords": 4,
+            "NumVertices": 7200,
+            "Strides": -1,
+            "UseHighPrecisionTangentBasis": false,
+            "UseFullPrecisionUVs": false
+          },
+          "ColorVertexBuffer": {
+            "Stride": 0,
+            "NumVertices": 0
+          },
+          "CardRepresentationData": {
+            "Bounds": {
+              "Min": {
+                "X": -300.1,
+                "Y": -314.2,
+                "Z": -293.90002
+              },
+              "Max": {
+                "X": 324.6,
+                "Y": 289.7,
+                "Z": 318.40002
+              },
+              "IsValid": 1
+            },
+            "MaxLodLevel": 0,
+            "bMostlyTwoSided": false,
+            "CardBuildData": [
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "AxisZ": {
+                    "X": -1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "Origin": {
+                    "X": -114.6422,
+                    "Y": -12.2500305,
+                    "Z": 2.4890747
+                  },
+                  "Extent": {
+                    "X": 301.95,
+                    "Y": 234.26251,
+                    "Z": 136.65312
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 0
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "AxisZ": {
+                    "X": -1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "Origin": {
+                    "X": 119.62033,
+                    "Y": -2.4890747,
+                    "Z": 2.4890747
+                  },
+                  "Extent": {
+                    "X": 234.2625,
+                    "Y": 234.26251,
+                    "Z": 117.13124
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 0
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "AxisZ": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "Origin": {
+                    "X": 119.620316,
+                    "Y": -2.4890747,
+                    "Z": 2.4890747
+                  },
+                  "Extent": {
+                    "X": 234.2625,
+                    "Y": 234.26251,
+                    "Z": 136.65312
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 1
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "AxisZ": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "Origin": {
+                    "X": -114.64218,
+                    "Y": -2.4890747,
+                    "Z": 2.4890747
+                  },
+                  "Extent": {
+                    "X": 234.2625,
+                    "Y": 234.26251,
+                    "Z": 117.13127
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 1
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "AxisZ": {
+                    "X": 0.0,
+                    "Y": -1.0,
+                    "Z": 0.0
+                  },
+                  "Origin": {
+                    "X": 2.4890442,
+                    "Y": -119.62033,
+                    "Z": 2.4890747
+                  },
+                  "Extent": {
+                    "X": 244.02344,
+                    "Y": 234.26251,
+                    "Z": 126.89218
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 2
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "AxisZ": {
+                    "X": 0.0,
+                    "Y": -1.0,
+                    "Z": 0.0
+                  },
+                  "Origin": {
+                    "X": -7.271881,
+                    "Y": 114.64218,
+                    "Z": 2.4890747
+                  },
+                  "Extent": {
+                    "X": 234.26251,
+                    "Y": 234.26251,
+                    "Z": 107.370316
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 2
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "AxisZ": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "Origin": {
+                    "X": 12.25,
+                    "Y": 114.6422,
+                    "Z": 12.2500305
+                  },
+                  "Extent": {
+                    "X": 312.35,
+                    "Y": 302.58908,
+                    "Z": 126.8922
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 3
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "AxisZ": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "Origin": {
+                    "X": -7.271881,
+                    "Y": -109.859375,
+                    "Z": 2.4890747
+                  },
+                  "Extent": {
+                    "X": 234.26251,
+                    "Y": 234.26251,
+                    "Z": 117.131256
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 3
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "AxisZ": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -1.0
+                  },
+                  "Origin": {
+                    "X": 2.4890442,
+                    "Y": -2.4890747,
+                    "Z": -114.642166
+                  },
+                  "Extent": {
+                    "X": 244.02344,
+                    "Y": 234.2625,
+                    "Z": 126.8922
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 4
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "AxisZ": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": -1.0
+                  },
+                  "Origin": {
+                    "X": -7.271881,
+                    "Y": -2.4890747,
+                    "Z": 109.859406
+                  },
+                  "Extent": {
+                    "X": 234.26251,
+                    "Y": 234.2625,
+                    "Z": 117.131256
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 4
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "AxisZ": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "Origin": {
+                    "X": 2.4890442,
+                    "Y": -2.4890747,
+                    "Z": 119.62036
+                  },
+                  "Extent": {
+                    "X": 244.02344,
+                    "Y": 234.2625,
+                    "Z": 126.89218
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 5
+              },
+              {
+                "OBB": {
+                  "AxisX": {
+                    "X": 1.0,
+                    "Y": 0.0,
+                    "Z": 0.0
+                  },
+                  "AxisY": {
+                    "X": 0.0,
+                    "Y": 1.0,
+                    "Z": 0.0
+                  },
+                  "AxisZ": {
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0
+                  },
+                  "Origin": {
+                    "X": -7.271881,
+                    "Y": -2.4890747,
+                    "Z": -114.64215
+                  },
+                  "Extent": {
+                    "X": 234.26251,
+                    "Y": 234.2625,
+                    "Z": 107.370316
+                  }
+                },
+                "LODLevel": 0,
+                "AxisAlignedDirectionIndex": 5
+              }
+            ]
+          }
+        }
+      ],
+      "NaniteResources": {
+        "RootData": {
+          "FixupChunk": {
+            "Header": {
+              "NumClusters": 8,
+              "NumHierachyFixups": 4,
+              "NumClusterFixups": 4
+            },
+            "HierarchyFixups": [
+              {
+                "PageIndex": 0,
+                "NodeIndex": 8,
+                "ChildIndex": 3,
+                "ClusterGroupPartStartIndex": 0,
+                "PageDependencyStart": 0,
+                "PageDependencyNum": 0
+              },
+              {
+                "PageIndex": 0,
+                "NodeIndex": 8,
+                "ChildIndex": 2,
+                "ClusterGroupPartStartIndex": 2,
+                "PageDependencyStart": 0,
+                "PageDependencyNum": 0
+              },
+              {
+                "PageIndex": 0,
+                "NodeIndex": 8,
+                "ChildIndex": 0,
+                "ClusterGroupPartStartIndex": 6,
+                "PageDependencyStart": 1,
+                "PageDependencyNum": 1
+              },
+              {
+                "PageIndex": 1,
+                "NodeIndex": 8,
+                "ChildIndex": 1,
+                "ClusterGroupPartStartIndex": 0,
+                "PageDependencyStart": 1,
+                "PageDependencyNum": 1
+              }
+            ],
+            "ClusterFixups": [
+              {
+                "PageIndex": 0,
+                "ClusterIndex": 2,
+                "PageDependencyStart": 1,
+                "PageDependencyNum": 1
+              },
+              {
+                "PageIndex": 0,
+                "ClusterIndex": 3,
+                "PageDependencyStart": 1,
+                "PageDependencyNum": 1
+              },
+              {
+                "PageIndex": 0,
+                "ClusterIndex": 4,
+                "PageDependencyStart": 1,
+                "PageDependencyNum": 1
+              },
+              {
+                "PageIndex": 0,
+                "ClusterIndex": 5,
+                "PageDependencyStart": 1,
+                "PageDependencyNum": 1
+              }
+            ]
+          },
+          "RootPageInfos": null,
+          "Clusters": [
+            {
+              "NumVerts": 176,
+              "PositionOffset": 3084,
+              "NumTris": 63,
+              "IndexOffset": 1936,
+              "ColorMin": 4294967295,
+              "ColorBits": 0,
+              "GroupIndex": 13,
+              "PosStart": {
+                "X": -4038,
+                "Y": -3887,
+                "Z": -3859
+              },
+              "BitsPerIndex": 8,
+              "PosPrecision": 4,
+              "PosBitsX": 13,
+              "PosBitsY": 13,
+              "PosBitsZ": 13,
+              "LODBounds": {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              "BoxBoundsCenter": {
+                "X": -7.0,
+                "Y": 10.375,
+                "Z": -0.59375
+              },
+              "LODError": 1.571379E+09,
+              "EdgeLength": 23977.0,
+              "BoxBoundsExtent": {
+                "X": 245.375,
+                "Y": 253.3125,
+                "Z": 240.59375
+              },
+              "Flags": 8,
+              "AttributeOffset": 9388,
+              "BitsPerAttribute": 136,
+              "DecodeInfoOffset": 912,
+              "NumUVs": 0,
+              "ColorMode": 1,
+              "UV_Prec": 4294967295,
+              "MaterialTableOffset": 0,
+              "MaterialTableLength": 0,
+              "Material0Index": 3,
+              "Material1Index": 2,
+              "Material2Index": 0,
+              "Material0Length": 42,
+              "Material1Length": 20,
+              "VertReuseBatchCountTableOffset": 0,
+              "VertReuseBatchCountTableSize": 0,
+              "VertReuseBatchInfo": {
+                "X": 315818020,
+                "Y": 204,
+                "Z": 0,
+                "W": 0
+              }
+            },
+            {
+              "NumVerts": 160,
+              "PositionOffset": 3944,
+              "NumTris": 63,
+              "IndexOffset": 2080,
+              "ColorMin": 4294967295,
+              "ColorBits": 0,
+              "GroupIndex": 13,
+              "PosStart": {
+                "X": -4038,
+                "Y": -3887,
+                "Z": -3709
+              },
+              "BitsPerIndex": 8,
+              "PosPrecision": 4,
+              "PosBitsX": 13,
+              "PosBitsY": 13,
+              "PosBitsZ": 13,
+              "LODBounds": {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              "BoxBoundsCenter": {
+                "X": -7.0,
+                "Y": 10.375,
+                "Z": 4.09375
+              },
+              "LODError": 1.571379E+09,
+              "EdgeLength": 23977.0,
+              "BoxBoundsExtent": {
+                "X": 245.375,
+                "Y": 253.3125,
+                "Z": 235.90625
+              },
+              "Flags": 8,
+              "AttributeOffset": 12380,
+              "BitsPerAttribute": 136,
+              "DecodeInfoOffset": 1040,
+              "NumUVs": 0,
+              "ColorMode": 1,
+              "UV_Prec": 4294967295,
+              "MaterialTableOffset": 0,
+              "MaterialTableLength": 0,
+              "Material0Index": 0,
+              "Material1Index": 0,
+              "Material2Index": 0,
+              "Material0Length": 1,
+              "Material1Length": 0,
+              "VertReuseBatchCountTableOffset": 0,
+              "VertReuseBatchCountTableSize": 0,
+              "VertReuseBatchInfo": {
+                "X": 4294965383,
+                "Y": 4294965757,
+                "Z": 362,
+                "W": 0
+              }
+            },
+            {
+              "NumVerts": 152,
+              "PositionOffset": 4724,
+              "NumTris": 63,
+              "IndexOffset": 2224,
+              "ColorMin": 4294967295,
+              "ColorBits": 0,
+              "GroupIndex": 12,
+              "PosStart": {
+                "X": -4038,
+                "Y": -3807,
+                "Z": -3746
+              },
+              "BitsPerIndex": 8,
+              "PosPrecision": 4,
+              "PosBitsX": 13,
+              "PosBitsY": 12,
+              "PosBitsZ": 13,
+              "LODBounds": {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              "BoxBoundsCenter": {
+                "X": -9.28125,
+                "Y": -113.25,
+                "Z": 2.15625
+              },
+              "LODError": 1.5255031E+09,
+              "EdgeLength": 23277.0,
+              "BoxBoundsExtent": {
+                "X": 243.09375,
+                "Y": 124.6875,
+                "Z": 236.28125
+              },
+              "Flags": 11,
+              "AttributeOffset": 15100,
+              "BitsPerAttribute": 128,
+              "DecodeInfoOffset": 1168,
+              "NumUVs": 0,
+              "ColorMode": 1,
+              "UV_Prec": 4008636142,
+              "MaterialTableOffset": 0,
+              "MaterialTableLength": 0,
+              "Material0Index": 0,
+              "Material1Index": 0,
+              "Material2Index": 0,
+              "Material0Length": 1,
+              "Material1Length": 0,
+              "VertReuseBatchCountTableOffset": 0,
+              "VertReuseBatchCountTableSize": 0,
+              "VertReuseBatchInfo": {
+                "X": 1636,
+                "Y": 941,
+                "Z": 14,
+                "W": 0
+              }
+            },
+            {
+              "NumVerts": 169,
+              "PositionOffset": 5448,
+              "NumTris": 63,
+              "IndexOffset": 2368,
+              "ColorMin": 4294967295,
+              "ColorBits": 0,
+              "GroupIndex": 12,
+              "PosStart": {
+                "X": -4038,
+                "Y": -3807,
+                "Z": -3746
+              },
+              "BitsPerIndex": 8,
+              "PosPrecision": 4,
+              "PosBitsX": 13,
+              "PosBitsY": 13,
+              "PosBitsZ": 13,
+              "LODBounds": {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              "BoxBoundsCenter": {
+                "X": -9.28125,
+                "Y": -100.5,
+                "Z": 2.15625
+              },
+              "LODError": 1.5255031E+09,
+              "EdgeLength": 23277.0,
+              "BoxBoundsExtent": {
+                "X": 243.09375,
+                "Y": 137.4375,
+                "Z": 236.28125
+              },
+              "Flags": 11,
+              "AttributeOffset": 17532,
+              "BitsPerAttribute": 128,
+              "DecodeInfoOffset": 1296,
+              "NumUVs": 0,
+              "ColorMode": 1,
+              "UV_Prec": 4008636142,
+              "MaterialTableOffset": 0,
+              "MaterialTableLength": 0,
+              "Material0Index": 0,
+              "Material1Index": 0,
+              "Material2Index": 0,
+              "Material0Length": 1,
+              "Material1Length": 0,
+              "VertReuseBatchCountTableOffset": 0,
+              "VertReuseBatchCountTableSize": 0,
+              "VertReuseBatchInfo": {
+                "X": 4294965757,
+                "Y": 4294965853,
+                "Z": 0,
+                "W": 17741
+              }
+            },
+            {
+              "NumVerts": 168,
+              "PositionOffset": 6272,
+              "NumTris": 63,
+              "IndexOffset": 2512,
+              "ColorMin": 4294967295,
+              "ColorBits": 0,
+              "GroupIndex": 12,
+              "PosStart": {
+                "X": -3907,
+                "Y": -784,
+                "Z": -3859
+              },
+              "BitsPerIndex": 8,
+              "PosPrecision": 4,
+              "PosBitsX": 13,
+              "PosBitsY": 13,
+              "PosBitsZ": 13,
+              "LODBounds": {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              "BoxBoundsCenter": {
+                "X": -5.8125,
+                "Y": 96.0625,
+                "Z": -0.59375
+              },
+              "LODError": 1.5162625E+09,
+              "EdgeLength": 23136.0,
+              "BoxBoundsExtent": {
+                "X": 238.375,
+                "Y": 145.0625,
+                "Z": 240.59375
+              },
+              "Flags": 11,
+              "AttributeOffset": 20236,
+              "BitsPerAttribute": 132,
+              "DecodeInfoOffset": 1424,
+              "NumUVs": 0,
+              "ColorMode": 1,
+              "UV_Prec": 4026462206,
+              "MaterialTableOffset": 0,
+              "MaterialTableLength": 0,
+              "Material0Index": 0,
+              "Material1Index": 0,
+              "Material2Index": 0,
+              "Material0Length": 1,
+              "Material1Length": 0,
+              "VertReuseBatchCountTableOffset": 0,
+              "VertReuseBatchCountTableSize": 0,
+              "VertReuseBatchInfo": {
+                "X": 941,
+                "Y": 1636,
+                "Z": 14,
+                "W": 0
+              }
+            },
+            {
+              "NumVerts": 160,
+              "PositionOffset": 7092,
+              "NumTris": 63,
+              "IndexOffset": 2656,
+              "ColorMin": 4294967295,
+              "ColorBits": 0,
+              "GroupIndex": 12,
+              "PosStart": {
+                "X": -3498,
+                "Y": -617,
+                "Z": -3492
+              },
+              "BitsPerIndex": 8,
+              "PosPrecision": 4,
+              "PosBitsX": 13,
+              "PosBitsY": 13,
+              "PosBitsZ": 13,
+              "LODBounds": {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              "BoxBoundsCenter": {
+                "X": 6.96875,
+                "Y": 101.28125,
+                "Z": 11.71875
+              },
+              "LODError": 1.5162625E+09,
+              "EdgeLength": 23136.0,
+              "BoxBoundsExtent": {
+                "X": 225.59375,
+                "Y": 139.84375,
+                "Z": 229.96875
+              },
+              "Flags": 11,
+              "AttributeOffset": 23008,
+              "BitsPerAttribute": 128,
+              "DecodeInfoOffset": 1552,
+              "NumUVs": 0,
+              "ColorMode": 1,
+              "UV_Prec": 4008636142,
+              "MaterialTableOffset": 0,
+              "MaterialTableLength": 0,
+              "Material0Index": 0,
+              "Material1Index": 0,
+              "Material2Index": 0,
+              "Material0Length": 1,
+              "Material1Length": 0,
+              "VertReuseBatchCountTableOffset": 0,
+              "VertReuseBatchCountTableSize": 0,
+              "VertReuseBatchInfo": {
+                "X": 4294965853,
+                "Y": 4294965902,
+                "Z": 17741,
+                "W": 18375
+              }
+            },
+            {
+              "NumVerts": 162,
+              "PositionOffset": 7872,
+              "NumTris": 63,
+              "IndexOffset": 2800,
+              "ColorMin": 4294967295,
+              "ColorBits": 0,
+              "GroupIndex": 11,
+              "PosStart": {
+                "X": -3822,
+                "Y": -3787,
+                "Z": -3792
+              },
+              "BitsPerIndex": 8,
+              "PosPrecision": 4,
+              "PosBitsX": 13,
+              "PosBitsY": 13,
+              "PosBitsZ": 13,
+              "LODBounds": {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              "BoxBoundsCenter": {
+                "X": -3.0,
+                "Y": 0.3125,
+                "Z": -68.875
+              },
+              "LODError": 1.4625879E+09,
+              "EdgeLength": 22317.0,
+              "BoxBoundsExtent": {
+                "X": 235.875,
+                "Y": 237.0,
+                "Z": 168.125
+              },
+              "Flags": 3,
+              "AttributeOffset": 25568,
+              "BitsPerAttribute": 132,
+              "DecodeInfoOffset": 1680,
+              "NumUVs": 0,
+              "ColorMode": 1,
+              "UV_Prec": 4026462206,
+              "MaterialTableOffset": 0,
+              "MaterialTableLength": 0,
+              "Material0Index": 0,
+              "Material1Index": 0,
+              "Material2Index": 0,
+              "Material0Length": 1,
+              "Material1Length": 0,
+              "VertReuseBatchCountTableOffset": 0,
+              "VertReuseBatchCountTableSize": 0,
+              "VertReuseBatchInfo": {
+                "X": 1636,
+                "Y": 941,
+                "Z": 14,
+                "W": 0
+              }
+            },
+            {
+              "NumVerts": 148,
+              "PositionOffset": 8664,
+              "NumTris": 62,
+              "IndexOffset": 2944,
+              "ColorMin": 4294967295,
+              "ColorBits": 0,
+              "GroupIndex": 11,
+              "PosStart": {
+                "X": -3822,
+                "Y": -3787,
+                "Z": -3792
+              },
+              "BitsPerIndex": 8,
+              "PosPrecision": 4,
+              "PosBitsX": 13,
+              "PosBitsY": 13,
+              "PosBitsZ": 13,
+              "LODBounds": {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              "BoxBoundsCenter": {
+                "X": -3.0,
+                "Y": 0.3125,
+                "Z": -93.8125
+              },
+              "LODError": 1.4625879E+09,
+              "EdgeLength": 22317.0,
+              "BoxBoundsExtent": {
+                "X": 235.875,
+                "Y": 237.0,
+                "Z": 143.1875
+              },
+              "Flags": 3,
+              "AttributeOffset": 28244,
+              "BitsPerAttribute": 132,
+              "DecodeInfoOffset": 1808,
+              "NumUVs": 0,
+              "ColorMode": 1,
+              "UV_Prec": 4026462206,
+              "MaterialTableOffset": 0,
+              "MaterialTableLength": 0,
+              "Material0Index": 0,
+              "Material1Index": 0,
+              "Material2Index": 0,
+              "Material0Length": 1,
+              "Material1Length": 0,
+              "VertReuseBatchCountTableOffset": 0,
+              "VertReuseBatchCountTableSize": 0,
+              "VertReuseBatchInfo": {
+                "X": 4294965902,
+                "Y": 4294965383,
+                "Z": 18375,
+                "W": 362
+              }
+            }
+          ],
+          "PageDiskHeader": {
+            "GpuSize": 30688,
+            "NumClusters": 8,
+            "NumRawFloat4s": 121,
+            "NumTexCoords": 4,
+            "NumVertexRefs": 358,
+            "DecodeInfoOffset": 1200,
+            "StripBitmaskOffset": 2320,
+            "VertexRefBitmaskOffset": 2824
+          },
+          "ClusterDiskHeaders": [
+            {
+              "IndexDataOffset": 2224,
+              "PageClusterMapOffset": 2704,
+              "VertexRefDataOffset": 3080,
+              "PositionDataOffset": 3796,
+              "AttributeDataOffset": 8496,
+              "NumVertexRefs": 19,
+              "NumPrevRefVerticesBeforeDwords": 11545606,
+              "NumPrevNewVerticesBeforeDwords": 184729690
+            },
+            {
+              "IndexDataOffset": 2232,
+              "PageClusterMapOffset": 2708,
+              "VertexRefDataOffset": 3099,
+              "PositionDataOffset": 4584,
+              "AttributeDataOffset": 11168,
+              "NumVertexRefs": 46,
+              "NumPrevRefVerticesBeforeDwords": 13644805,
+              "NumPrevNewVerticesBeforeDwords": 167936081
+            },
+            {
+              "IndexDataOffset": 2244,
+              "PageClusterMapOffset": 2716,
+              "VertexRefDataOffset": 3145,
+              "PositionDataOffset": 5156,
+              "AttributeDataOffset": 13108,
+              "NumVertexRefs": 31,
+              "NumPrevRefVerticesBeforeDwords": 13644807,
+              "NumPrevNewVerticesBeforeDwords": 159539283
+            },
+            {
+              "IndexDataOffset": 2256,
+              "PageClusterMapOffset": 2728,
+              "VertexRefDataOffset": 3176,
+              "PositionDataOffset": 5764,
+              "AttributeDataOffset": 15044,
+              "NumVertexRefs": 66,
+              "NumPrevRefVerticesBeforeDwords": 14694408,
+              "NumPrevNewVerticesBeforeDwords": 177382482
+            },
+            {
+              "IndexDataOffset": 2268,
+              "PageClusterMapOffset": 2744,
+              "VertexRefDataOffset": 3242,
+              "PositionDataOffset": 6280,
+              "AttributeDataOffset": 16692,
+              "NumVertexRefs": 50,
+              "NumPrevRefVerticesBeforeDwords": 13644808,
+              "NumPrevNewVerticesBeforeDwords": 176332884
+            },
+            {
+              "IndexDataOffset": 2280,
+              "PageClusterMapOffset": 2764,
+              "VertexRefDataOffset": 3292,
+              "PositionDataOffset": 6872,
+              "AttributeDataOffset": 18700,
+              "NumVertexRefs": 49,
+              "NumPrevRefVerticesBeforeDwords": 15744002,
+              "NumPrevNewVerticesBeforeDwords": 167936084
+            },
+            {
+              "IndexDataOffset": 2292,
+              "PageClusterMapOffset": 2780,
+              "VertexRefDataOffset": 3341,
+              "PositionDataOffset": 7428,
+              "AttributeDataOffset": 20476,
+              "NumVertexRefs": 29,
+              "NumPrevRefVerticesBeforeDwords": 13644808,
+              "NumPrevNewVerticesBeforeDwords": 170035284
+            },
+            {
+              "IndexDataOffset": 2304,
+              "PageClusterMapOffset": 2800,
+              "VertexRefDataOffset": 3370,
+              "PositionDataOffset": 8096,
+              "AttributeDataOffset": 22740,
+              "NumVertexRefs": 68,
+              "NumPrevRefVerticesBeforeDwords": 23091212,
+              "NumPrevNewVerticesBeforeDwords": 155340874
+            }
+          ],
+          "PageGPUHeader": {
+            "NumClusters": 8
+          }
+        },
+        "StreamablePages": {
+          "BulkDataFlags": "BULKDATA_PayloadAtEndOfFile | BULKDATA_PayloadInSeperateFile | BULKDATA_Force_NOT_InlinePayload | BULKDATA_NoOffsetFixUp",
+          "ElementCount": 598960,
+          "SizeOnDisk": 598960,
+          "OffsetInFile": "0x0"
+        },
+        "ImposterAtlas": [],
+        "HierarchyNodes": [
+          {
+            "LODBounds": [
+              {
+                "X": 4.2034454,
+                "Y": -40.394077,
+                "Z": -3.6320686,
+                "W": 532.8012
+              },
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              }
+            ],
+            "Misc0": [
+              {
+                "BoxBoundsCenter": {
+                  "X": 12.25,
+                  "Y": -12.25,
+                  "Z": 12.25
+                },
+                "MinLODError": 1.213185E+09,
+                "MaxParentLODError": 18511.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 12.25,
+                  "Y": -12.65625,
+                  "Z": 12.25
+                },
+                "MinLODError": 1.3014316E+09,
+                "MaxParentLODError": 19858.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -3.5625,
+                  "Y": 2.21875,
+                  "Z": 0.125
+                },
+                "MinLODError": 1.3790275E+09,
+                "MaxParentLODError": 21042.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -7.0,
+                  "Y": 10.375,
+                  "Z": 0.25
+                },
+                "MinLODError": 2.0804229E+09,
+                "MaxParentLODError": 31744.0
+              }
+            ],
+            "Misc1": [
+              {
+                "BoxBoundsExtent": {
+                  "X": 311.375,
+                  "Y": 300.9375,
+                  "Z": 305.125
+                },
+                "ChildStartReference": 1,
+                "bLoaded": true
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 311.375,
+                  "Y": 301.34375,
+                  "Z": 305.125
+                },
+                "ChildStartReference": 4,
+                "bLoaded": true
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 268.75,
+                  "Y": 235.09375,
+                  "Z": 237.125
+                },
+                "ChildStartReference": 7,
+                "bLoaded": true
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 245.375,
+                  "Y": 253.3125,
+                  "Z": 241.4375
+                },
+                "ChildStartReference": 8,
+                "bLoaded": true
+              }
+            ],
+            "Misc2": [
+              {
+                "NumChildren": 511,
+                "NumPages": 7,
+                "StartPageIndex": 1048575,
+                "bEnabled": true,
+                "bLeaf": false
+              },
+              {
+                "NumChildren": 511,
+                "NumPages": 7,
+                "StartPageIndex": 1048575,
+                "bEnabled": true,
+                "bLeaf": false
+              },
+              {
+                "NumChildren": 511,
+                "NumPages": 7,
+                "StartPageIndex": 1048575,
+                "bEnabled": true,
+                "bLeaf": false
+              },
+              {
+                "NumChildren": 511,
+                "NumPages": 7,
+                "StartPageIndex": 1048575,
+                "bEnabled": true,
+                "bLeaf": false
+              }
+            ]
+          },
+          {
+            "LODBounds": [
+              {
+                "X": -55.826088,
+                "Y": -121.401505,
+                "Z": 93.995895,
+                "W": 311.77145
+              },
+              {
+                "X": 163.08664,
+                "Y": -155.71315,
+                "Z": -8.072717,
+                "W": 279.53406
+              },
+              {
+                "X": 39.16666,
+                "Y": -136.29034,
+                "Z": 49.705288,
+                "W": 417.6344
+              },
+              {
+                "X": -18.348839,
+                "Y": 21.46178,
+                "Z": -38.0362,
+                "W": 458.5153
+              }
+            ],
+            "Misc0": [
+              {
+                "BoxBoundsCenter": {
+                  "X": -117.1875,
+                  "Y": -115.03125,
+                  "Z": 35.0
+                },
+                "MinLODError": 1.1965389E+09,
+                "MaxParentLODError": 18257.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 166.875,
+                  "Y": -156.09375,
+                  "Z": 155.84375
+                },
+                "MinLODError": 1.2095805E+09,
+                "MaxParentLODError": 18456.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 49.78125,
+                  "Y": -78.09375,
+                  "Z": -15.0
+                },
+                "MinLODError": 1.2095805E+09,
+                "MaxParentLODError": 18456.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 12.25,
+                  "Y": -12.25,
+                  "Z": 12.25
+                },
+                "MinLODError": 1.213185E+09,
+                "MaxParentLODError": 18511.0
+              }
+            ],
+            "Misc1": [
+              {
+                "BoxBoundsExtent": {
+                  "X": 112.875,
+                  "Y": 115.03125,
+                  "Z": 195.0625
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 63.1875,
+                  "Y": 73.96875,
+                  "Z": 74.21875
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 180.28125,
+                  "Y": 151.96875,
+                  "Z": 215.0625
+                },
+                "ChildStartReference": 2,
+                "bLoaded": true
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 311.375,
+                  "Y": 300.9375,
+                  "Z": 305.125
+                },
+                "ChildStartReference": 3,
+                "bLoaded": true
+              }
+            ],
+            "Misc2": [
+              {
+                "NumChildren": 8,
+                "NumPages": 2,
+                "StartPageIndex": 6,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 1,
+                "NumPages": 2,
+                "StartPageIndex": 5,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 511,
+                "NumPages": 7,
+                "StartPageIndex": 1048575,
+                "bEnabled": true,
+                "bLeaf": false
+              },
+              {
+                "NumChildren": 511,
+                "NumPages": 7,
+                "StartPageIndex": 1048575,
+                "bEnabled": true,
+                "bLeaf": false
+              }
+            ]
+          },
+          {
+            "LODBounds": [
+              {
+                "X": -55.826088,
+                "Y": -121.401505,
+                "Z": 93.995895,
+                "W": 311.77145
+              },
+              {
+                "X": 163.08664,
+                "Y": -155.71315,
+                "Z": -8.072717,
+                "W": 279.53406
+              },
+              {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "W": 0.0
+              },
+              {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "W": 0.0
+              }
+            ],
+            "Misc0": [
+              {
+                "BoxBoundsCenter": {
+                  "X": 16.03125,
+                  "Y": -93.78125,
+                  "Z": 85.90625
+                },
+                "MinLODError": 1.1965389E+09,
+                "MaxParentLODError": 18257.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 113.75,
+                  "Y": -78.09375,
+                  "Z": -36.625
+                },
+                "MinLODError": 1.2095805E+09,
+                "MaxParentLODError": 18456.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "MinLODError": 0.0,
+                "MaxParentLODError": 0.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "MinLODError": 0.0,
+                "MaxParentLODError": 0.0
+              }
+            ],
+            "Misc1": [
+              {
+                "BoxBoundsExtent": {
+                  "X": 146.53125,
+                  "Y": 93.78125,
+                  "Z": 114.15625
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 116.3125,
+                  "Y": 151.96875,
+                  "Z": 193.4375
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ChildStartReference": 0,
+                "bLoaded": true
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ChildStartReference": 0,
+                "bLoaded": true
+              }
+            ],
+            "Misc2": [
+              {
+                "NumChildren": 15,
+                "NumPages": 2,
+                "StartPageIndex": 6,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 21,
+                "NumPages": 2,
+                "StartPageIndex": 5,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 0,
+                "NumPages": 0,
+                "StartPageIndex": 0,
+                "bEnabled": false,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 0,
+                "NumPages": 0,
+                "StartPageIndex": 0,
+                "bEnabled": false,
+                "bLeaf": true
+              }
+            ]
+          },
+          {
+            "LODBounds": [
+              {
+                "X": 44.101906,
+                "Y": 30.461418,
+                "Z": 20.052042,
+                "W": 372.752
+              },
+              {
+                "X": -137.87103,
+                "Y": 4.2377043,
+                "Z": -149.20918,
+                "W": 294.37616
+              },
+              {
+                "X": -86.34197,
+                "Y": 93.42829,
+                "Z": 103.8071,
+                "W": 236.30447
+              },
+              {
+                "X": -86.34197,
+                "Y": 93.42829,
+                "Z": 103.8071,
+                "W": 236.30447
+              }
+            ],
+            "Misc0": [
+              {
+                "BoxBoundsCenter": {
+                  "X": 12.25,
+                  "Y": -12.25,
+                  "Z": 12.25
+                },
+                "MinLODError": 1.2122675E+09,
+                "MaxParentLODError": 18497.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -98.375,
+                  "Y": 0.0,
+                  "Z": -115.03125
+                },
+                "MinLODError": 1.213185E+09,
+                "MaxParentLODError": 18511.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -44.9375,
+                  "Y": 40.90625,
+                  "Z": 52.53125
+                },
+                "MinLODError": 1.1542682E+09,
+                "MaxParentLODError": 17612.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -109.3125,
+                  "Y": 132.28125,
+                  "Z": 121.5
+                },
+                "MinLODError": 1.1542682E+09,
+                "MaxParentLODError": 17612.0
+              }
+            ],
+            "Misc1": [
+              {
+                "BoxBoundsExtent": {
+                  "X": 311.375,
+                  "Y": 300.9375,
+                  "Z": 305.125
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 131.6875,
+                  "Y": 230.0625,
+                  "Z": 115.03125
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 125.8125,
+                  "Y": 87.15625,
+                  "Z": 95.46875
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 120.75,
+                  "Y": 97.78125,
+                  "Z": 108.5625
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              }
+            ],
+            "Misc2": [
+              {
+                "NumChildren": 24,
+                "NumPages": 1,
+                "StartPageIndex": 8,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 23,
+                "NumPages": 1,
+                "StartPageIndex": 6,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 21,
+                "NumPages": 2,
+                "StartPageIndex": 7,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 5,
+                "NumPages": 2,
+                "StartPageIndex": 7,
+                "bEnabled": true,
+                "bLeaf": true
+              }
+            ]
+          },
+          {
+            "LODBounds": [
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "W": 0.0
+              },
+              {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "W": 0.0
+              }
+            ],
+            "Misc0": [
+              {
+                "BoxBoundsCenter": {
+                  "X": 12.25,
+                  "Y": -12.25,
+                  "Z": 12.25
+                },
+                "MinLODError": 1.2653212E+09,
+                "MaxParentLODError": 19307.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -3.5625,
+                  "Y": -38.5625,
+                  "Z": 0.0625
+                },
+                "MinLODError": 1.3014328E+09,
+                "MaxParentLODError": 19858.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "MinLODError": 0.0,
+                "MaxParentLODError": 0.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "MinLODError": 0.0,
+                "MaxParentLODError": 0.0
+              }
+            ],
+            "Misc1": [
+              {
+                "BoxBoundsExtent": {
+                  "X": 311.375,
+                  "Y": 300.9375,
+                  "Z": 305.125
+                },
+                "ChildStartReference": 5,
+                "bLoaded": true
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 268.75,
+                  "Y": 275.4375,
+                  "Z": 263.0625
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ChildStartReference": 0,
+                "bLoaded": true
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ChildStartReference": 0,
+                "bLoaded": true
+              }
+            ],
+            "Misc2": [
+              {
+                "NumChildren": 511,
+                "NumPages": 7,
+                "StartPageIndex": 1048575,
+                "bEnabled": true,
+                "bLeaf": false
+              },
+              {
+                "NumChildren": 27,
+                "NumPages": 2,
+                "StartPageIndex": 2,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 0,
+                "NumPages": 0,
+                "StartPageIndex": 0,
+                "bEnabled": false,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 0,
+                "NumPages": 0,
+                "StartPageIndex": 0,
+                "bEnabled": false,
+                "bLeaf": true
+              }
+            ]
+          },
+          {
+            "LODBounds": [
+              {
+                "X": -23.207296,
+                "Y": 2.9413376,
+                "Z": -20.919886,
+                "W": 484.19757
+              },
+              {
+                "X": -23.207296,
+                "Y": 2.9413376,
+                "Z": -20.919886,
+                "W": 484.19757
+              },
+              {
+                "X": 12.932089,
+                "Y": -55.025528,
+                "Z": -64.23198,
+                "W": 496.78174
+              },
+              {
+                "X": 12.932089,
+                "Y": -55.025528,
+                "Z": -64.23198,
+                "W": 496.78174
+              }
+            ],
+            "Misc0": [
+              {
+                "BoxBoundsCenter": {
+                  "X": -111.71875,
+                  "Y": 131.78125,
+                  "Z": 136.53125
+                },
+                "MinLODError": 1.2411384E+09,
+                "MaxParentLODError": 18938.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -93.3125,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "MinLODError": 1.2411384E+09,
+                "MaxParentLODError": 18938.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 79.875,
+                  "Y": 0.0,
+                  "Z": -98.625
+                },
+                "MinLODError": 1.2556881E+09,
+                "MaxParentLODError": 19160.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 12.25,
+                  "Y": -12.25,
+                  "Z": 12.25
+                },
+                "MinLODError": 1.2653212E+09,
+                "MaxParentLODError": 19307.0
+              }
+            ],
+            "Misc1": [
+              {
+                "BoxBoundsExtent": {
+                  "X": 118.34375,
+                  "Y": 98.28125,
+                  "Z": 93.53125
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 136.75,
+                  "Y": 230.0625,
+                  "Z": 230.0625
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 150.1875,
+                  "Y": 230.0625,
+                  "Z": 131.4375
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 311.375,
+                  "Y": 300.9375,
+                  "Z": 305.125
+                },
+                "ChildStartReference": 6,
+                "bLoaded": true
+              }
+            ],
+            "Misc2": [
+              {
+                "NumChildren": 2,
+                "NumPages": 2,
+                "StartPageIndex": 3,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 22,
+                "NumPages": 2,
+                "StartPageIndex": 3,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 22,
+                "NumPages": 1,
+                "StartPageIndex": 4,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 511,
+                "NumPages": 7,
+                "StartPageIndex": 1048575,
+                "bEnabled": true,
+                "bLeaf": false
+              }
+            ]
+          },
+          {
+            "LODBounds": [
+              {
+                "X": 12.932089,
+                "Y": -55.025528,
+                "Z": -64.23198,
+                "W": 496.78174
+              },
+              {
+                "X": 12.932089,
+                "Y": -55.025528,
+                "Z": -64.23198,
+                "W": 496.78174
+              },
+              {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "W": 0.0
+              },
+              {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "W": 0.0
+              }
+            ],
+            "Misc0": [
+              {
+                "BoxBoundsCenter": {
+                  "X": 12.25,
+                  "Y": -12.25,
+                  "Z": 12.25
+                },
+                "MinLODError": 1.2653212E+09,
+                "MaxParentLODError": 19307.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 100.84375,
+                  "Y": 0.0,
+                  "Z": 106.6875
+                },
+                "MinLODError": 1.2653212E+09,
+                "MaxParentLODError": 19307.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "MinLODError": 0.0,
+                "MaxParentLODError": 0.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "MinLODError": 0.0,
+                "MaxParentLODError": 0.0
+              }
+            ],
+            "Misc1": [
+              {
+                "BoxBoundsExtent": {
+                  "X": 311.375,
+                  "Y": 300.9375,
+                  "Z": 305.125
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 129.21875,
+                  "Y": 230.0625,
+                  "Z": 123.375
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ChildStartReference": 0,
+                "bLoaded": true
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "ChildStartReference": 0,
+                "bLoaded": true
+              }
+            ],
+            "Misc2": [
+              {
+                "NumChildren": 9,
+                "NumPages": 2,
+                "StartPageIndex": 4,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 12,
+                "NumPages": 2,
+                "StartPageIndex": 4,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 0,
+                "NumPages": 0,
+                "StartPageIndex": 0,
+                "bEnabled": false,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 0,
+                "NumPages": 0,
+                "StartPageIndex": 0,
+                "bEnabled": false,
+                "bLeaf": true
+              }
+            ]
+          },
+          {
+            "LODBounds": [
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              }
+            ],
+            "Misc0": [
+              {
+                "BoxBoundsCenter": {
+                  "X": 0.0,
+                  "Y": 0.0,
+                  "Z": 0.0
+                },
+                "MinLODError": 1.3014328E+09,
+                "MaxParentLODError": 19858.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -3.5625,
+                  "Y": 0.15625,
+                  "Z": -1.78125
+                },
+                "MinLODError": 1.3359057E+09,
+                "MaxParentLODError": 20384.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -0.03125,
+                  "Y": 0.03125,
+                  "Z": 96.25
+                },
+                "MinLODError": 1.3359057E+09,
+                "MaxParentLODError": 20384.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -1.125,
+                  "Y": 2.21875,
+                  "Z": 0.125
+                },
+                "MinLODError": 1.3790289E+09,
+                "MaxParentLODError": 21042.0
+              }
+            ],
+            "Misc1": [
+              {
+                "BoxBoundsExtent": {
+                  "X": 230.0625,
+                  "Y": 230.0625,
+                  "Z": 230.0625
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 268.75,
+                  "Y": 231.28125,
+                  "Z": 232.28125
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 230.90625,
+                  "Y": 230.90625,
+                  "Z": 135.1875
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 236.1875,
+                  "Y": 235.09375,
+                  "Z": 237.125
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              }
+            ],
+            "Misc2": [
+              {
+                "NumChildren": 8,
+                "NumPages": 2,
+                "StartPageIndex": 2,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 13,
+                "NumPages": 2,
+                "StartPageIndex": 1,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 5,
+                "NumPages": 2,
+                "StartPageIndex": 1,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 14,
+                "NumPages": 1,
+                "StartPageIndex": 1,
+                "bEnabled": true,
+                "bLeaf": true
+              }
+            ]
+          },
+          {
+            "LODBounds": [
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": -2.326271,
+                "Y": -30.551418,
+                "Z": -45.945244,
+                "W": 530.9314
+              },
+              {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0,
+                "W": 0.0
+              }
+            ],
+            "Misc0": [
+              {
+                "BoxBoundsCenter": {
+                  "X": -3.0,
+                  "Y": 0.3125,
+                  "Z": -68.875
+                },
+                "MinLODError": 1.4142879E+09,
+                "MaxParentLODError": 21580.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -1.75,
+                  "Y": -0.4375,
+                  "Z": -0.28125
+                },
+                "MinLODError": 1.4142879E+09,
+                "MaxParentLODError": 21580.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -9.28125,
+                  "Y": 1.59375,
+                  "Z": 0.25
+                },
+                "MinLODError": 1.4594428E+09,
+                "MaxParentLODError": 22269.0
+              },
+              {
+                "BoxBoundsCenter": {
+                  "X": -7.0,
+                  "Y": 10.375,
+                  "Z": -0.59375
+                },
+                "MinLODError": 2.0804229E+09,
+                "MaxParentLODError": 31744.0
+              }
+            ],
+            "Misc1": [
+              {
+                "BoxBoundsExtent": {
+                  "X": 235.875,
+                  "Y": 237.0,
+                  "Z": 168.125
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 235.5625,
+                  "Y": 237.5,
+                  "Z": 238.21875
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 243.09375,
+                  "Y": 239.53125,
+                  "Z": 241.4375
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              },
+              {
+                "BoxBoundsExtent": {
+                  "X": 245.375,
+                  "Y": 253.3125,
+                  "Z": 240.59375
+                },
+                "ChildStartReference": 4294967295,
+                "bLoaded": false
+              }
+            ],
+            "Misc2": [
+              {
+                "NumChildren": 2,
+                "NumPages": 1,
+                "StartPageIndex": 1,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 6,
+                "NumPages": 1,
+                "StartPageIndex": 1,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 4,
+                "NumPages": 0,
+                "StartPageIndex": 0,
+                "bEnabled": true,
+                "bLeaf": true
+              },
+              {
+                "NumChildren": 2,
+                "NumPages": 0,
+                "StartPageIndex": 0,
+                "bEnabled": true,
+                "bLeaf": true
+              }
+            ]
+          }
+        ],
+        "HierarchyRootOffsets": [
+          0
+        ],
+        "PageStreamingStates": [
+          {
+            "BulkOffset": 0,
+            "BulkSize": 24204,
+            "PageSize": 24100,
+            "DependenciesStart": 0,
+            "DependenciesNum": 0,
+            "MaxHierarchyDepth": 1,
+            "Flags": 0
+          },
+          {
+            "BulkOffset": 0,
+            "BulkSize": 86520,
+            "PageSize": 86272,
+            "DependenciesStart": 0,
+            "DependenciesNum": 1,
+            "MaxHierarchyDepth": 1,
+            "Flags": 1
+          },
+          {
+            "BulkOffset": 86520,
+            "BulkSize": 86624,
+            "PageSize": 86296,
+            "DependenciesStart": 1,
+            "DependenciesNum": 1,
+            "MaxHierarchyDepth": 1,
+            "Flags": 1
+          },
+          {
+            "BulkOffset": 173144,
+            "BulkSize": 75208,
+            "PageSize": 74888,
+            "DependenciesStart": 2,
+            "DependenciesNum": 2,
+            "MaxHierarchyDepth": 2,
+            "Flags": 1
+          },
+          {
+            "BulkOffset": 248352,
+            "BulkSize": 79840,
+            "PageSize": 79472,
+            "DependenciesStart": 4,
+            "DependenciesNum": 2,
+            "MaxHierarchyDepth": 3,
+            "Flags": 1
+          },
+          {
+            "BulkOffset": 328192,
+            "BulkSize": 68592,
+            "PageSize": 68328,
+            "DependenciesStart": 6,
+            "DependenciesNum": 3,
+            "MaxHierarchyDepth": 3,
+            "Flags": 1
+          },
+          {
+            "BulkOffset": 396784,
+            "BulkSize": 67992,
+            "PageSize": 67608,
+            "DependenciesStart": 9,
+            "DependenciesNum": 3,
+            "MaxHierarchyDepth": 2,
+            "Flags": 1
+          },
+          {
+            "BulkOffset": 464776,
+            "BulkSize": 78232,
+            "PageSize": 77944,
+            "DependenciesStart": 12,
+            "DependenciesNum": 3,
+            "MaxHierarchyDepth": 2,
+            "Flags": 1
+          },
+          {
+            "BulkOffset": 543008,
+            "BulkSize": 55952,
+            "PageSize": 55656,
+            "DependenciesStart": 15,
+            "DependenciesNum": 3,
+            "MaxHierarchyDepth": 2,
+            "Flags": 1
+          }
+        ],
+        "PageDependencies": [
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          2,
+          3,
+          4,
+          3,
+          4,
+          5,
+          3,
+          4,
+          5,
+          3,
+          4,
+          5
+        ],
+        "AssemblyTransforms": null,
+        "MeshBounds": null,
+        "NumRootPages": 1,
+        "PositionPrecision": 4,
+        "NormalPrecision": 8,
+        "TangentPrecision": 0,
+        "NumInputTriangles": 12368,
+        "NumInputVertices": 13446,
+        "NumInputMeshes": 1,
+        "NumInputTexCoords": 4,
+        "NumClusters": 266,
+        "ResourceFlags": 0
+      },
+      "Bounds": {
+        "Origin": {
+          "X": 12.25,
+          "Y": -12.25,
+          "Z": 12.250015
+        },
+        "BoxExtent": {
+          "X": 311.35,
+          "Y": 300.95,
+          "Z": 305.15002
+        },
+        "SphereRadius": 529.7417
+      },
+      "bLODsShareStaticLighting": true,
+      "ScreenSize": [
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  }
+]

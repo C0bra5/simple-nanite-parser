@@ -1,0 +1,26 @@
+HLSL_UINT = int
+HLSL_UINT2 = tuple[int,int]
+HLSL_UINT3 = tuple[int,int,int]
+HLSL_UINT4 = tuple[int,int,int,int]
+HLSL_SIZE_UINT = 4
+HLSL_SIZE_UINT2 = HLSL_SIZE_UINT * 2
+HLSL_SIZE_UINT3 = HLSL_SIZE_UINT * 3
+HLSL_SIZE_UINT4 = HLSL_SIZE_UINT * 4
+
+HLSL_INT = int
+HLSL_INT2 = tuple[int,int]
+HLSL_INT3 = tuple[int,int,int]
+HLSL_INT4 = tuple[int,int,int,int]
+HLSL_SIZE_INT = 4
+HLSL_SIZE_INT2 = HLSL_SIZE_INT * 2
+HLSL_SIZE_INT3 = HLSL_SIZE_INT * 3
+HLSL_SIZE_INT4 = HLSL_SIZE_INT * 4
+
+HLSL_FLOAT = float
+HLSL_FLOAT2 = tuple[float,float]
+HLSL_FLOAT3 = tuple[float,float,float]
+HLSL_FLOAT4 = tuple[float,float,float,float]
+HLSL_SIZE_FLOAT = 4
+HLSL_SIZE_FLOAT2 = HLSL_SIZE_FLOAT * 2
+HLSL_SIZE_FLOAT3 = HLSL_SIZE_FLOAT * 3
+HLSL_SIZE_FLOAT4 = HLSL_SIZE_FLOAT * 4
