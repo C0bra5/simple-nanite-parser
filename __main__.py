@@ -3,8 +3,10 @@ from nanite_constants import *
 from FResources import FResources
 import FNaniteStreamingPage
 import json
-from hlsl_runner import extract_data_using_compute_shader
 import argparse
+
+def float_check(a,b):
+	return abs(max(a,b) - min(a,b)) < 0.00001
 
 def identify_nanite_resources_using_fmodel_json(fmodel, uasset):
 	with open(fmodel, 'r', encoding='utf-8') as fmodel:
@@ -71,6 +73,7 @@ def main(TEST_PATH: str):
 	
 	
 	EXPORT_SCALE = 1/100
+	UV_INDEX = 0
 	FMODEL = TEST_PATH + '.json'
 	UASSET = TEST_PATH + '.uasset'
 	UBULK = TEST_PATH + '.ubulk'
@@ -97,47 +100,12 @@ def main(TEST_PATH: str):
 			if slice.MinLODError < 0:
 				max_lod_exclusive = min(max_lod_exclusive, slice.MaxParentLODError)
 
-	print("extracting data")
-	hlsl_data = extract_data_using_compute_shader(resources.upload_buffer, resources.install_info, resources.PageDependencies)
-	
-	# Data validation, ignore while we are extracting from the compute shader for the moment
+	# print("validating python processed data using compute shader")
+	# from hlsl_runner import extract_data_using_compute_shader
+	# hlsl_data = extract_data_using_compute_shader(resources.upload_buffer, resources.install_info, resources.PageDependencies)
 	# for pi, p in enumerate(resources.PageStreamingStates):
 	# 	for ci, c in enumerate(p.data.Clusters):
-	# 		# transfer the ref vertices
-	# 		for vi in range(c.NumVerts):
-	# 			ov = c.Vertices[vi]
-	# 			pos_ref = hlsl_data['ver_pos'][pi][ci][vi]
-	# 			ext_ver = FVertex(*pos_ref[1:])
-	# 			if ov is not None:
-	# 				assert(pos_ref[0] == 1)
-	# 				assert(ext_ver == ov)
-	# 			else:
-	# 				assert(pos_ref[0] == 1)
-	# 				# validate ref data
-	# 				ref = hlsl_data['pos_refs'][pi][ci][vi]
-	# 				assert(ref is not None)
-	# 				assert(ref[0] == 1)
-
-	# 				# validate ref page id
-	# 				assert(0 <= ref[1] <= p.DependenciesNum)
-	# 				ref_page_id: int = pi if ref[1] == 0 else resources.PageDependencies[p.DependenciesStart + (ref[1] - 1)]
-	# 				assert (0 <= ref_page_id < len(resources.PageData))
-	# 				ref_page = resources.PageData[ref_page_id]
-					
-	# 				# validate ref cluster id
-	# 				ref_cluster_id: int = ref[2]
-	# 				assert(0 <= ref_cluster_id < len(ref_page.Clusters))
-	# 				ref_cluster = ref_page.Clusters[ref_cluster_id]
-
-	# 				# validate ref vertex id
-	# 				ref_vertex_id: int = ref[3]
-	# 				assert(0 <= ref_vertex_id < len(ref_cluster.Vertices))
-	# 				rv = ref_cluster.Vertices[ref_vertex_id]
-	# 				assert(rv is not None)
-	# 				# transfer the vertex over
-	# 				c.Vertices[vi] = rv if rv == ext_ver else ext_ver
-
-	# 		# transfer the tri strips
+	# 		# validate the tri strips the tri strips
 	# 		for ti, t in enumerate(c.StripIndices):
 	# 			ref = hlsl_data['tri_strips'][pi][ci][ti]
 	# 			assert(ref is not None)
@@ -145,16 +113,51 @@ def main(TEST_PATH: str):
 	# 			assert(t.x == ref[1])
 	# 			assert(t.y == ref[2])
 	# 			assert(t.z == ref[3])
-	# 			assert(hlsl_data['ver_attr'][pi][ci][ti] is not None)
 	# 			assert(hlsl_data['mat_id'][pi][ci][ti] in material_lookup)
-
-	# 		# validate extracted data
-	# 		if len(c.StripIndices) < NANITE_MAX_CLUSTER_TRIANGLES or ci == len(p.data.Clusters) - 1:
+			
+	# 		# check if we missed a strip
+	# 		if len(c.StripIndices) < NANITE_MAX_CLUSTER_TRIANGLES:
 	# 			ref = hlsl_data['tri_strips'][pi][ci][len(c.StripIndices)]
 	# 			assert(ref[0] == 0)
-	# 		else:
-	# 			ref = hlsl_data['tri_strips'][pi][ci][len(c.StripIndices)]
-	# 			assert(ref[0] == 1)
+
+	# 		# Validate the vert refs
+	# 		for vi, vr in enumerate(c.RefVerticies):
+	# 			if vi >= c.NumVerts: break
+	# 			ref = hlsl_data['ver_refs'][pi][ci][vi]
+	# 			if ref[0] == 0:
+	# 				assert(vr is None)
+	# 			else:		
+	# 				assert(ref == vr)
+
+	# 		# Validate the verts
+	# 		for vi in range(c.NumVerts):
+	# 			ov = c.Vertices[vi]
+	# 			ref = hlsl_data['ver_pos'][pi][ci][vi]
+	# 			assert(hlsl_data['ver_attr'][pi][ci][vi] is not None)
+	# 			assert(FVertex(*ref[1:]) == ov)
+
+	# 			assert(c.VertAttrs[vi] is not None)
+
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['nr'][0], c.VertAttrs[vi].Normal.x))
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['nr'][1], c.VertAttrs[vi].Normal.y))
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['nr'][2], c.VertAttrs[vi].Normal.z))
+
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['tx'][0], c.VertAttrs[vi].TangentX_AndSign.x))
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['tx'][1], c.VertAttrs[vi].TangentX_AndSign.y))
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['tx'][2], c.VertAttrs[vi].TangentX_AndSign.z))
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['tx'][3], c.VertAttrs[vi].TangentX_AndSign.w))
+
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['cl'][0], c.VertAttrs[vi].Color.x))
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['cl'][1], c.VertAttrs[vi].Color.y))
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['cl'][2], c.VertAttrs[vi].Color.z))
+	# 			assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['cl'][3], c.VertAttrs[vi].Color.w))
+
+	# 			for txc_i in range(c.NumUVs):
+	# 				assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['uv'][txc_i][0], c.VertAttrs[vi].TexCoords[txc_i].x))
+	# 				assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['uv'][txc_i][1], c.VertAttrs[vi].TexCoords[txc_i].y))
+
+
+
 
 	print('parsing high quality clusters')
 	LODError: dict[float, list['FNaniteStreamingPage.FCluster']] = {}
@@ -169,14 +172,12 @@ def main(TEST_PATH: str):
 					LODError[c.LODError].append(c)
 				
 				for vi in range(c.NumVerts):
-					pos = hlsl_data['ver_pos'][pi][ci][vi]
-					assert(pos[0] == 1)
-					c.Vertices[vi] = FVertex(pos[1], pos[2], pos[3])
+					assert(c.Vertices[vi] is not None)
+					assert(c.VertAttrs[vi] is not None)
 				
 				for ti in range(c.NumTris):
-					indices = hlsl_data['tri_strips'][pi][ci][ti]
-					assert(indices[0] == 1)
-					c.StripIndices[ti] = FUIntVector3(indices[1], indices[2], indices[3])
+					assert(c.StripIndices[ti] is not None)
+					assert(c.MatIndices[ti] is not None)
 
 	print('converting to obj')
 	lines = list()
@@ -195,20 +196,19 @@ def main(TEST_PATH: str):
 			
 			for ti, t in enumerate(c.StripIndices):
 				assert(t is not None)
-				vert_attrs = hlsl_data['ver_attr'][c.local_page_index][c.local_cluster_index][ti]
 				face_line = 'f '
-				for tvi, vi in enumerate(t.xyz()):
-					va = vert_attrs[tvi]
+				for vi in t.xyz():
+					va = c.VertAttrs[vi]
 					v = c.Vertices[vi]
 					assert(v is not None)
-					lines.append(f'vn {va["nr"][0]} {va["nr"][2]} {va["nr"][1]}')
-					lines.append(f'vt {va["uv"][0]} {1 - va["uv"][1]}')
+					lines.append(f'vn {va.Normal.x} {va.Normal.z} {va.Normal.y}')
+					lines.append(f'vt {va.TexCoords[UV_INDEX].x} {1 - va.TexCoords[UV_INDEX].y}')
 					face_line += f' {v.index}/{uv_index}/{uv_index}'
 					uv_index += 1
-				lines.append(f'usemtl {material_lookup[hlsl_data['mat_id'][c.local_page_index][c.local_cluster_index][ti]]}')
+				lines.append(f'usemtl {material_lookup[c.MatIndices[ti]]}')
 				lines.append(face_line)
 				
-	print('witing .obj file')
+	print('writing .obj file')
 	with open(f"./out/{model_name}.obj", 'w', encoding='UTF8') as f:
 		f.write('\n'.join(lines))
 

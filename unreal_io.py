@@ -1,4 +1,4 @@
-from typing import BinaryIO, Callable, TypeVar, TypeAlias
+from typing import BinaryIO, Callable, TypeVar, TypeAlias, overload
 import struct
 import os
 import io
@@ -8,18 +8,7 @@ import math
 uint: TypeAlias = int
 
 
-# shader types recreation
-uint2: TypeAlias = tuple[uint,uint]
-uint3: TypeAlias = tuple[uint,uint,uint]
-uint4: TypeAlias = tuple[uint,uint,uint,uint]
 
-int2: TypeAlias = tuple[int,int]
-int3: TypeAlias = tuple[int,int,int]
-int4: TypeAlias = tuple[int,int,int,int]
-
-float2: TypeAlias = tuple[float,float]
-float3: TypeAlias = tuple[float,float,float]
-float4: TypeAlias = tuple[float,float,float,float]
 
 # unreal parsing utils
 def read_magic(f: BinaryIO, magic: bytes):
@@ -61,14 +50,40 @@ def unpack(format: str, f: BinaryIO):
 def read_f16(f) -> float:
 	return unpack('<e', f)[0]
 
+class _VectorBase:
+	format: str
+	def check_args(self, *args):
+		return
+	def parse_arg(self, *args):
+		return args
+class _IntVector(_VectorBase):
+	def check_args(self, *args):
+		for arg in args:
+			assert(isinstance(arg, int))
+class _UIntVector(_VectorBase):
+	def check_args(self, *args):
+		for arg in args:
+			assert (isinstance(arg, int) and arg >= 0)
+class _FloatVector(_VectorBase):
+	def check_args(self, *args):
+		for arg in args:
+			assert(isinstance(arg, int|float))
+	def parse_args(self, *args):
+		return (*[float(f) for f in args],)
 
+class TVector2[T](_VectorBase):
+	format: str
 
-
-class TVector2[T]:
-	
-	def __init__(self,x: T,y: T):
-		self.x: T = x
-		self.y: T = y
+	def __init__(self, x: T|BinaryIO|'TVector2', y: T|None = None):
+		self.x: T
+		self.y: T
+		if isinstance(x, io.IOBase):
+			self.x, self.y = struct.unpack(self.format, x.read(struct.calcsize(self.format)))
+		else:
+			if isinstance(x, TVector2):
+				x, y = x.xy()
+			self.check_args(x,y)
+			self.x, self.y = self.parse_arg(x,y)
 	
 	def __eq__(self, value):
 		return \
@@ -76,6 +91,137 @@ class TVector2[T]:
 			and self.x == value.x \
 			and self.y == value.y
 	
+	@overload
+	def __add__(self, other: 'float|FVector2d|FVector2f|FVector2h') -> 'FVector2f': ...
+	@overload
+	def __sub__(self, other: 'float|FVector2d|FVector2f|FVector2h') -> 'FVector2f': ...
+	@overload
+	def __mul__(self, other: 'float|FVector2d|FVector2f|FVector2h') -> 'FVector2f': ...
+	@overload
+	def __div__(self, other: 'float|FVector2d|FVector2f|FVector2h') -> 'FVector2f': ...
+
+	def __add__(self, other):
+		if isinstance(other, TVector2):
+			if isinstance(self, FVector2d|FVector2f|FVector2h) or isinstance(other, FVector2d|FVector2f|FVector2h):
+				ret_class = FVector2f
+			elif isinstance(self, FIntVector2) or isinstance(other, FIntVector2):
+				ret_class = FIntVector2
+			else:
+				ret_class = FUIntVector2
+			return ret_class(
+				self.x + other.x,
+				self.y + other.y
+			)
+		elif isinstance(other, int):
+			return self.__class__(
+				self.x - other,
+				self.y - other
+			)
+		elif isinstance(other, float):
+			return FVector2f(
+				self.x - other,
+				self.y - other
+			)
+		
+		raise ValueError(f'tried to add vector with unknown type! {other.__class__}')
+
+	def __sub__(self, other):
+		if isinstance(other, TVector2):
+			if isinstance(self, FVector2d|FVector2f|FVector2h) or isinstance(other, FVector2d|FVector2f|FVector2h):
+				ret_class = FVector2f
+			elif isinstance(self, FIntVector2) or isinstance(other, FIntVector2):
+				ret_class = FIntVector2
+			else:
+				ret_class = self.__class__
+			return ret_class(
+				self.x - other.x,
+				self.y - other.y
+			)
+		elif isinstance(other, float):
+			return FVector2f(
+				self.x - other,
+				self.y - other
+			)
+		raise ValueError(f'tried to add vector with unknown type! {other.__class__}')
+
+	def __mul__(self, other):
+		if isinstance(other, TVector2):
+			if isinstance(self, FVector2d|FVector2f|FVector2h) or isinstance(other, FVector2d|FVector2f|FVector2h):
+				ret_class = FVector2f
+			elif isinstance(self, FIntVector2) or isinstance(other, FIntVector2):
+				ret_class = FIntVector2
+			else:
+				ret_class = self.__class__
+			return ret_class(
+				self.x * other.x,
+				self.y * other.y
+			)
+		elif isinstance(other, float):
+			return FVector2f(
+				self.x * other,
+				self.y * other
+			)
+		elif isinstance(other, int):
+			if isinstance(self, FVector2d|FVector2f|FVector2h) or isinstance(other, float):
+				ret_class = FVector2f
+			elif isinstance(self, FIntVector2):
+				ret_class = FIntVector2
+			else:
+				ret_class = self.__class__
+			return self.__class__(
+				self.x * other,
+				self.y * other
+			)
+		
+		raise ValueError(f'tried to multiply vector with unknown type! {other.__class__}')
+
+	def __truediv__(self, other):
+		if isinstance(other, TVector2):
+			FVector2f(
+				self.x / other.x,
+				self.y / other.y
+			)
+		elif isinstance(other, float|int):
+			return FVector2f(
+				self.x / other,
+				self.y / other
+			)
+		
+		raise ValueError(f'tried to divide vector with unknown type! {other.__class__}')
+		
+	def __floordiv__(self, other):
+		if isinstance(other, TVector2):
+			if isinstance(self, FUIntVector2) and isinstance(other, FUIntVector2):
+				return FUIntVector2(
+					self.x // other.x,
+					self.y // other.y
+				)
+			elif isinstance(self, FIntVector2) and isinstance(other, FIntVector2):
+				return FIntVector2(
+					self.x // other.x,
+					self.y // other.y
+				) 
+		elif isinstance(self, FUIntVector2) and isinstance(other, int):
+			if other < 0: ret_class = FIntVector2
+			else: ret_class = FUIntVector2
+			return ret_class(
+				self.x // other,
+				self.y // other
+			)
+		elif isinstance(self, FIntVector2) and isinstance(other, int):
+			return FIntVector2(
+				self.x // other,
+				self.y // other
+			)
+		
+	def __len__(self):
+		return 2
+	
+	def dot(self, other: 'TVector2') -> float:
+		ret = self.x * other.x
+		ret += self.y * other.y
+		return ret
+
 	def __repr__(self):
 		return f'{self.__class__.__name__}({self.x}, {self.y})'
 	
@@ -98,12 +244,19 @@ class TVector2[T]:
 	def xy(s): return s.x, s.y
 	def yx(s): return s.y, s.x
 
-class TVector3[T]:
+class TVector3[T](_VectorBase):
 	
-	def __init__(self,x: T,y: T,z: T):
-		self.x: T = x
-		self.y: T = y
-		self.z: T = z
+	def __init__(self, x: T|BinaryIO, y: T|None = None, z: T|None = None):
+		self.x: T
+		self.y: T
+		self.z: T
+		if isinstance(x, io.IOBase):
+			self.x, self.y, self.z = struct.unpack(self.format, x.read(struct.calcsize(self.format)))
+		else:
+			if isinstance(x, TVector3):
+				x, y, z = x.xyz()
+			self.check_args(x,y,z)
+			self.x, self.y, self.z = self.parse_arg(x,y,z)
 
 	def __eq__(self, value):
 		return \
@@ -111,6 +264,139 @@ class TVector3[T]:
 			and self.x == value.x \
 			and self.y == value.y \
 			and self.z == value.z
+
+
+	@overload
+	def __add__(self, other: 'float|FVector3d|FVector3f|FVector3h') -> 'FVector3f': ...
+	@overload
+	def __sub__(self, other: 'float|FVector3d|FVector3f|FVector3h') -> 'FVector3f': ...
+	@overload
+	def __mul__(self, other: 'float|FVector3d|FVector3f|FVector3h') -> 'FVector3f': ...
+	@overload
+	def __div__(self, other: 'float|FVector3d|FVector3f|FVector3h') -> 'FVector3f': ...
+
+	def __add__(self, other):
+		if isinstance(other, TVector3):
+			if isinstance(self, FVector3f|FVector3h) or isinstance(other, FVector3f|FVector3h):
+				ret_class = FVector3f
+			elif isinstance(self, FIntVector3) or isinstance(other, FIntVector3):
+				ret_class = FIntVector3
+			else:
+				ret_class = FUIntVector3
+			return ret_class(
+				self.x + other.x,
+				self.y + other.y,
+				self.z + other.z
+			)
+		
+		raise ValueError(f'tried to add vector with unknown type! {other.__class__}')
+
+	def __sub__(self, other):
+		if isinstance(other, TVector3):
+			if isinstance(self, FVector3f|FVector3h) or isinstance(other, FVector3f|FVector3h):
+				ret_class = FVector3f
+			elif isinstance(self, FIntVector3) or isinstance(other, FIntVector3):
+				ret_class = FIntVector3
+			else:
+				ret_class = self.__class__
+			return ret_class(
+				self.x - other.x,
+				self.y - other.y,
+				self.z - other.z
+			)
+		
+		raise ValueError(f'tried to add vector with unknown type! {other.__class__}')
+
+	def __mul__(self, other):
+		if isinstance(other, TVector3):
+			if isinstance(self, FVector3f|FVector3h) or isinstance(other, FVector3f|FVector3h):
+				ret_class = FVector3f
+			elif isinstance(self, FIntVector3) or isinstance(other, FIntVector3):
+				ret_class = FIntVector3
+			else:
+				ret_class = self.__class__
+			return ret_class(
+				self.x * other.x,
+				self.y * other.y,
+				self.z * other.z
+			)
+		elif isinstance(other, float):
+			return FVector3f(
+				self.x * other,
+				self.y * other,
+				self.z * other
+			)
+		elif isinstance(other, int):
+			if isinstance(self, FVector3f|FVector3h) or isinstance(other, float):
+				ret_class = FVector3f
+			elif isinstance(self, FIntVector3):
+				ret_class = FIntVector3
+			else:
+				ret_class = self.__class__
+			return self.__class__(
+				self.x * other,
+				self.y * other,
+				self.z * other
+			)
+		
+		raise ValueError(f'tried to multiply vector with unknown type! {other.__class__}')
+
+	def __truediv__(self, other):
+		if isinstance(other, TVector3):
+			if isinstance(self, FIntVector3|FUIntVector3) and isinstance(other, FIntVector3|FUIntVector3):
+				return self.__class__(
+					self.x // other.x,
+					self.y // other.y,
+					self.z // other.z
+				)
+			elif isinstance(self, FIntVector3|FUIntVector3) and isinstance(other, int):
+				return self.__class__(
+					self.x // other,
+					self.y // other,
+					self.z // other
+				)
+			elif isinstance(self, FVector3f|FVector3h):
+				FVector3f(
+					self.x / other.x,
+					self.y / other.y,
+					self.z / other.z
+				)
+		elif isinstance(other, float|int):
+			return FVector3f(
+				self.x / other,
+				self.y / other,
+				self.z / other
+			)
+		
+		raise ValueError(f'tried to divide vector with unknown type! {other.__class__}')
+	
+	def __len__(self):
+		return 3
+	
+	def saturate(self):
+		self.x = max(1, min(0, self.x))
+		self.y = max(1, min(0, self.y))
+		self.z = max(1, min(0, self.z))
+
+	def magnitude(self) -> float:
+		return math.sqrt(
+			self.x * self.x
+			+ self.y * self.y
+			+ self.z * self.z
+		)
+	
+	def normalize(self):
+		return self / self.magnitude()
+
+	def cross(self, other: 'TVector3'):
+		return self.__class__(
+			self[1] * other[2] - self[2] * other[1],
+			self[2] * other[0] - self[0] * other[2],
+			self[0] * other[1] - self[1] * other[0]
+		)
+
+	def copy(self):
+		return self.__class__(*self.xyz())
 
 	def __repr__(self):
 		return f'{self.__class__.__name__}({self.x}, {self.y}, {self.z})'
@@ -151,14 +437,180 @@ class TVector3[T]:
 	def zxy(s): return s.z, s.x, s.y
 	def zyx(s): return s.z, s.y, s.x
 
-
-class TVector4[T]:
+class TVector4[T](_VectorBase):
 	
-	def __init__(self,x: T,y: T,z: T,w: T):
-		self.x: T = x
-		self.y: T = y
-		self.z: T = z
-		self.w: T = w
+	@overload
+	def __add__(self, other: 'float|FVector4d|FVector4f|FVector4h') -> 'FVector4f': ...
+	@overload
+	def __sub__(self, other: 'float|FVector4d|FVector4f|FVector4h') -> 'FVector4f': ...
+	@overload
+	def __mul__(self, other: 'float|FVector4d|FVector4f|FVector4h') -> 'FVector4f': ...
+	@overload
+	def __div__(self, other: 'float|FVector4d|FVector4f|FVector4h') -> 'FVector4f': ...
+
+	def __init__(self, x: T|BinaryIO, y: T|None = None, z: T|None = None, w: T|None = None):
+		self.x: T
+		self.y: T
+		self.z: T
+		self.w: T
+		if isinstance(x, io.IOBase):
+			pos = x.tell()
+			x.seek(0, os.SEEK_END)
+			length = x.tell()
+			x.seek(pos, os.SEEK_SET)
+			data = x.read(struct.calcsize(self.format))
+			self.x, self.y, self.z, self.w = struct.unpack(self.format, data)
+		else:
+			if isinstance(x, TVector4):
+				x, y, z, w = x.xyzw()
+			self.check_args(x,y,z,w)
+			self.x, self.y, self.z, self.w = self.parse_arg(x,y,z,w)
+
+	def __add__(self, other):
+		if isinstance(other, TVector4):
+			if isinstance(self, FVector4d|FVector4f|FVector4h) or isinstance(other, FVector4d|FVector4f|FVector4h):
+				ret_class = FVector4f
+			elif isinstance(self, FIntVector4) or isinstance(other, FIntVector4):
+				ret_class = FIntVector4
+			else:
+				ret_class = FUIntVector4
+			return ret_class(
+				self.x + other.x,
+				self.y + other.y,
+				self.z + other.z,
+				self.w + other.w
+			)
+		elif isinstance(other, int):
+			return self.__class__(
+				self.x - other,
+				self.y - other,
+				self.z - other,
+				self.w - other
+			)
+		elif isinstance(other, float):
+			return FVector4f(
+				self.x - other,
+				self.y - other,
+				self.z - other,
+				self.w - other
+			)
+		
+		raise ValueError(f'tried to add vector with unknown type! {other.__class__}')
+
+	def __sub__(self, other):
+		if isinstance(other, TVector4):
+			if isinstance(self, FVector4d|FVector4f|FVector4h) or isinstance(other, FVector4d|FVector4f|FVector4h):
+				ret_class = FVector4f
+			elif isinstance(self, FIntVector4) or isinstance(other, FIntVector4):
+				ret_class = FIntVector4
+			else:
+				ret_class = self.__class__
+			return ret_class(
+				self.x - other.x,
+				self.y - other.y,
+				self.z - other.z,
+				self.w - other.w
+			)
+		elif isinstance(other, float):
+			return FVector4f(
+				self.x - other,
+				self.y - other,
+				self.z - other,
+				self.w - other
+			)
+		raise ValueError(f'tried to add vector with unknown type! {other.__class__}')
+
+	def __mul__(self, other):
+		if isinstance(other, TVector4):
+			if isinstance(self, FVector4d|FVector4f|FVector4h) or isinstance(other, FVector4d|FVector4f|FVector4h):
+				ret_class = FVector4f
+			elif isinstance(self, FIntVector4) or isinstance(other, FIntVector4):
+				ret_class = FIntVector4
+			else:
+				ret_class = self.__class__
+			return ret_class(
+				self.x * other.x,
+				self.y * other.y,
+				self.z * other.z,
+				self.w * other.w
+			)
+		elif isinstance(other, float):
+			return FVector4f(
+				self.x * other,
+				self.y * other,
+				self.z * other,
+				self.w * other
+			)
+		elif isinstance(other, int):
+			if isinstance(self, FVector4d|FVector4f|FVector4h) or isinstance(other, float):
+				ret_class = FVector4f
+			elif isinstance(self, FIntVector4):
+				ret_class = FIntVector4
+			else:
+				ret_class = self.__class__
+			return self.__class__(
+				self.x * other,
+				self.y * other,
+				self.z * other,
+				self.w * other
+			)
+		
+		raise ValueError(f'tried to multiply vector with unknown type! {other.__class__}')
+
+	def __truediv__(self, other):
+		if isinstance(other, TVector4):
+			FVector4f(
+				self.x / other.x,
+				self.y / other.y,
+				self.z / other.z,
+				self.w / other.w
+			)
+		elif isinstance(other, float|int):
+			return FVector4f(
+				self.x / other,
+				self.y / other,
+				self.z / other,
+				self.w / other
+			)
+		
+		raise ValueError(f'tried to divide vector with unknown type! {other.__class__}')
+		
+	def __floordiv__(self, other):
+		if isinstance(other, TVector4):
+			if isinstance(self, FUIntVector4) and isinstance(other, FUIntVector4):
+				return FUIntVector4(
+					self.x // other.x,
+					self.y // other.y,
+					self.z // other.z,
+					self.w // other.w
+				)
+			elif isinstance(self, FIntVector4) and isinstance(other, FIntVector4):
+				return FIntVector4(
+					self.x // other.x,
+					self.y // other.y,
+					self.z // other.z,
+					self.w // other.w
+				) 
+		elif isinstance(self, FUIntVector4) and isinstance(other, int):
+			if other < 0: ret_class = FIntVector4
+			else: ret_class = FUIntVector4
+			return ret_class(
+				self.x // other,
+				self.y // other,
+				self.z // other,
+				self.w // other
+			)
+		elif isinstance(self, FIntVector4) and isinstance(other, int):
+			return FIntVector4(
+				self.x // other,
+				self.y // other,
+				self.z // other,
+				self.w // other
+			)
+		
+
+	def __len__(self):
+		return 4
 
 	def __eq__(self, value):
 		return \
@@ -259,142 +711,58 @@ class TVector4[T]:
 	def wzxy(s): return s.w, s.z, s.x, s.y
 	def wzyx(s): return s.w, s.z, s.y, s.x
 
-class FVector2h(TVector2[float]):
-	def __init__(self, x: BinaryIO|float|int, y: float|int|None = None):
-		if isinstance(x, float|int) and isinstance(y, float|int):
-			super().__init__(float(x),float(y))
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<ee', x))
-		else:
-			raise ValueError("bad arg types")
-class FVector3h(TVector3[float]):
-	def __init__(self, x: BinaryIO|float|int, y: float|int|None = None, z: float|int|None = None):
-		if isinstance(x, float|int) and isinstance(y, float|int) and isinstance(z, float|int):
-			super().__init__(float(x),float(y),float(z))
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<eee', x))
-		else:
-			raise ValueError("bad arg types")
-class FVector4h(TVector4[float]):
-	def __init__(self, x: BinaryIO|float|int, y: float|int|None = None, z: float|int|None = None, w: float|int|None = None):
-		if isinstance(x, float|int) and isinstance(y, float|int) and isinstance(z, float|int) and isinstance(w, float|int):
-			super().__init__(float(x),float(y),float(z),float(w))
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<eeee', x))
-		else:
-			raise ValueError("bad arg types")
+class FVector2h(TVector2[float], _FloatVector): format = '<ee'
+class FVector3h(TVector3[float], _FloatVector): format = '<eee'
+class FVector4h(TVector4[float], _FloatVector): format = '<eeee'
 
-class FVector2f(TVector2[float]):
-	def __init__(self, x: BinaryIO|float|int, y: float|int|None = None):
-		if isinstance(x, float|int) and isinstance(y, float|int):
-			super().__init__(float(x),float(y))
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<ff', x))
-		else:
-			raise ValueError("bad arg types")
-class FVector3f(TVector3[float]):
-	def __init__(self, x: BinaryIO|float|int, y: float|int|None = None, z: float|int|None = None):
-		if isinstance(x, float|int) and isinstance(y, float|int) and isinstance(z, float|int):
-			super().__init__(float(x),float(y),float(z))
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<fff', x))
-		else:
-			raise ValueError("bad arg types")
-class FVector4f(TVector4[float]):
-	def __init__(self, x: BinaryIO|float|int, y: float|int|None = None, z: float|int|None = None, w: float|int|None = None):
-		if isinstance(x, float|int) and isinstance(y, float|int) and isinstance(z, float|int) and isinstance(w, float|int):
-			super().__init__(float(x),float(y),float(z),float(w))
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<ffff', x))
-		else:
-			raise ValueError("bad arg types")
+class FVector2f(TVector2[float], _FloatVector): format = '<ff'
+class FVector3f(TVector3[float], _FloatVector): format = '<fff'
+class FVector4f(TVector4[float], _FloatVector): format = '<ffff'
 
-class FVector2d(TVector2[float]):
-	def __init__(self, x: BinaryIO|float|int, y: float|int|None = None):
-		if isinstance(x, float|int) and isinstance(y, float|int):
-			super().__init__(float(x),float(y))
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<dd', x))
-		else:
-			raise ValueError("bad arg types")
-class FVector3d(TVector3[float]):
-	def __init__(self, x: BinaryIO|float|int, y: float|int|None = None, z: float|int|None = None):
-		if isinstance(x, float|int) and isinstance(y, float|int) and isinstance(z, float|int):
-			super().__init__(float(x),float(y),float(z))
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<ddd', x))
-		else:
-			raise ValueError("bad arg types")
-class FVector4d(TVector4[float]):
-	def __init__(self, x: BinaryIO|float|int, y: float|int|None = None, z: float|int|None = None, w: float|int|None = None):
-		if isinstance(x, float|int) and isinstance(y, float|int) and isinstance(z, float|int) and isinstance(w, float|int):
-			super().__init__(float(x),float(y),float(z),float(w))
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<dddd', x))
-		else:
-			raise ValueError("bad arg types")
+class FVector2d(TVector2[float], _FloatVector): format = '<dd'
+class FVector3d(TVector3[float], _FloatVector): format = '<ddd'
+class FVector4d(TVector4[float], _FloatVector): format = '<dddd'
 
-class FUIntVector2(TVector2[uint]):
-	def __init__(self, x: BinaryIO|uint, y: uint|None = None):
-		if isinstance(x, uint) and isinstance(y, uint):
-			assert(x >= 0 and y >= 0)
-			super().__init__(x,y)
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<II', x))
-		else:
-			raise ValueError("bad arg types")
-class FUIntVector3(TVector3[uint]):
-	def __init__(self, x: BinaryIO|uint, y: uint|None = None, z: uint|None = None):
-		if isinstance(x, uint) and isinstance(y, uint) and isinstance(z, uint):
-			assert(x >= 0 and y >= 0 and z >= 0)
-			super().__init__(x,y,z)
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<III', x))
-		else:
-			raise ValueError("bad arg types")
-class FUIntVector4(TVector4[uint]):
-	def __init__(self, x: BinaryIO|uint, y: uint|None = None, z: uint|None = None, w: uint|None = None):
-		if isinstance(x, uint) and isinstance(y, uint) and isinstance(z, uint) and isinstance(w, uint):
-			assert(x >= 0 and y >= 0 and z >= 0 and w >= 0)
-			super().__init__(x,y,z,w)
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<IIII', x))
-		else:
-			raise ValueError("bad arg types")
+class FUIntVector2(TVector2[uint], _UIntVector): format = '<II'
+class FUIntVector3(TVector3[uint], _UIntVector): format = '<III'
+class FUIntVector4(TVector4[uint], _UIntVector): format = '<IIII'
 
+class FIntVector2(TVector2[int], _IntVector): format = '<ii'
+class FIntVector3(TVector3[int], _IntVector): format = '<iii'
+class FIntVector4(TVector4[int], _IntVector): format = '<iiii'
 
-class FIntVector2(TVector2[int]):
-	def __init__(self, x: BinaryIO|int, y: int|None = None):
-		if isinstance(x, int) and isinstance(y, int):
-			super().__init__(x,y)
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<ii', x))
-		else:
-			raise ValueError("bad arg types")
-class FIntVector3(TVector3[int]):
-	def __init__(self, x: BinaryIO|int, y: int|None = None, z: int|None = None):
-		if isinstance(x, int) and isinstance(y, int) and isinstance(z, int):
-			super().__init__(x,y,z)
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<iii', x))
-		else:
-			raise ValueError("bad arg types")
-class FIntVector4(TVector4[int]):
-	def __init__(self, x: BinaryIO|int, y: int|None = None, z: int|None = None, w: int|None = None):
-		if isinstance(x, int) and isinstance(y, int) and isinstance(z, int) and isinstance(w, int):
-			super().__init__(x,y,z,w)
-		elif isinstance(x, io.IOBase):
-			super().__init__(*unpack('<iiii', x))
-		else:
-			raise ValueError("bad arg types")
+class FULongVector2(TVector2[uint], _UIntVector): format = '<QQ'
+class FULongVector3(TVector3[uint], _UIntVector): format = '<QQQ'
+class FULongVector4(TVector4[uint], _UIntVector): format = '<QQQQ'
 
+class FLongVector2(TVector2[int], _IntVector): format = '<qq'
+class FLongVector3(TVector3[int], _IntVector): format = '<qqq'
+class FLongVector4(TVector4[int], _IntVector): format = '<qqqq'
 
 class FVertex(FVector3f):
-	def __init__(self, *args):
-		super().__init__(*args)
+	def __init__(self, x, y, z):
+		super().__init__(x, y, z)
 		self.index:int|None = None
 		self.is_ref:bool = False
-	
+		self.raw_pos: FIntVector3 = None
+
+	def __repr__(self):
+		return super().__repr__() + " | "+ (self.raw_pos.__repr__() if self.raw_pos else "None")
+
+
+# shader types recreation
+uint2: TypeAlias = FUIntVector2
+uint3: TypeAlias = FUIntVector3
+uint4: TypeAlias = FUIntVector4
+
+int2: TypeAlias = FIntVector2
+int3: TypeAlias = FIntVector3
+int4: TypeAlias = FIntVector4
+
+float2: TypeAlias = FVector2f
+float3: TypeAlias = FVector3f
+float4: TypeAlias = FVector4f
+
 def u32_rshift(val:uint, shift: uint):
 	return (val << shift) & 0xFFFFFFFF
 
@@ -492,7 +860,23 @@ def firstbithigh(x: uint) -> uint:
 	# usually 0 would be returned for a 0 value but HLSL shaders output -1 so y'know
 	return 0xffffffff if x == 0 else math.floor(math.log2(x))
 
+def bytes_to_hex(bytes: bytes) -> str:
+	return ''.join([f'{b:02x}' for b in bytes])
 
+def ReadByte(InputBuffer: BinaryIO,	Address: uint) -> uint:
+	InputBuffer.seek(Address & ~3, os.SEEK_SET)
+	return (read_u32(InputBuffer) >> ((Address & 3)*8)) & 0xFF
+
+def UnpackByte0(v: uint) -> uint: return v & 0xff
+def UnpackByte1(v: uint) -> uint: return (v >> 8) & 0xff
+def UnpackByte2(v: uint) -> uint: return (v >> 16) & 0xff
+def UnpackByte3(v: uint) -> uint: return v >> 24
+
+def UnpackToUint4(Value: uint, NumComponentBits: FUIntVector4):
+	return FUIntVector4(BitFieldExtractU32(Value, NumComponentBits.x, 0),
+				 BitFieldExtractU32(Value, NumComponentBits.y, NumComponentBits.x),
+				 BitFieldExtractU32(Value, NumComponentBits.z, NumComponentBits.x + NumComponentBits.y),
+				 BitFieldExtractU32(Value, NumComponentBits.w, NumComponentBits.x + NumComponentBits.y + NumComponentBits.z))
 
 # tests
 assert(firstbithigh(00000000) == 4294967295)

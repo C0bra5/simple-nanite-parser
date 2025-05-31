@@ -1,2 +1,1 @@
 python>=3.12
-compushady>=0.17.5

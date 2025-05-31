@@ -96,6 +96,7 @@ class FResources:
 		self.install_info:list[tuple[int,int,int,int]] = list()
 		with io.BytesIO(self.root_pages_data) as root_io:
 			for i, p in enumerate(self.PageStreamingStates):
+				print(f'parsing page {i + 1} / {len(self.PageStreamingStates)}')
 				p.dependencies.extend(self.PageDependencies[p.DependenciesStart:p.DependenciesStart+p.DependenciesNum])
 				for d in p.dependencies:
 					assert(d < i)
