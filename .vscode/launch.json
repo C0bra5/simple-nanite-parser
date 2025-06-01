@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "__main__.py",
 			"console": "integratedTerminal",
-			"args": ["C:\\unreal_projects\\fmodel_output\\Exports\\OblivionRemastered\\Content\\Art\\Environment\\dungeons\\Caves\\SM_csrmcornerinexitn01a.json"]
+			"args": ["./sample/mat_index_testing_cube.json"]
 		}
 	]
 }
