@@ -4,6 +4,7 @@ from FResources import FResources
 import FNaniteStreamingPage
 import json
 import argparse
+import pygltflib
 
 def float_check(a,b):
 	return abs(max(a,b) - min(a,b)) < 0.00001
@@ -69,7 +70,7 @@ def identify_nanite_resources_using_fmodel_json(fmodel, uasset):
 	return resource_index, material_lookup, mesh['Name']
 	
 
-def main(TEST_PATH: str):
+def main(TEST_PATH: str, output_format = 'gltf'):
 	
 	
 	EXPORT_SCALE = 1/100
@@ -158,12 +159,17 @@ def main(TEST_PATH: str):
 
 
 
-
+	has_tangents = False
+	max_tex_coords = 0
+	num_tris = 0
+	num_verts = 0
 	print('parsing high quality clusters')
 	LODError: dict[float, list['FNaniteStreamingPage.FCluster']] = {}
 	for pi, p in enumerate(resources.PageData):
 		for ci, c in enumerate(p.Clusters):
 			if c.LODError < max_lod_exclusive:
+				has_tangents = has_tangents or c.bHasTangents
+				max_tex_coords = max(max_tex_coords, c.NumUVs)
 				c.local_page_index = pi
 				c.local_cluster_index = ci
 				if c.LODError not in LODError:
@@ -171,6 +177,8 @@ def main(TEST_PATH: str):
 				else:
 					LODError[c.LODError].append(c)
 				
+				num_tris += c.NumTris
+				num_verts += c.NumVerts
 				for vi in range(c.NumVerts):
 					assert(c.Vertices[vi] is not None)
 					assert(c.VertAttrs[vi] is not None)
@@ -179,49 +187,213 @@ def main(TEST_PATH: str):
 					assert(c.StripIndices[ti] is not None)
 					assert(c.MatIndices[ti] is not None)
 
-	print('converting to obj')
-	lines = list()
-	vertex_index = 1
-	uv_index = 1
-	lines.append(f'o {model_name}')
-	for lod in sorted(LODError.keys()):
-		for c in LODError[lod]:
-			for vi, v in enumerate(c.Vertices):
-				assert(v is not None)
-				if v.index is None:
-					v.index = vertex_index
-					vertex_index += 1
-					line = f"v {v.x*EXPORT_SCALE} {v.z*EXPORT_SCALE} {v.y*EXPORT_SCALE}"
-					lines.append(line)
-			
-			for ti, t in enumerate(c.StripIndices):
-				assert(t is not None)
-				face_line = 'f '
-				for vi in t.xyz():
-					va = c.VertAttrs[vi]
-					v = c.Vertices[vi]
-					assert(v is not None)
-					lines.append(f'vn {va.Normal.x} {va.Normal.z} {va.Normal.y}')
-					lines.append(f'vt {va.TexCoords[UV_INDEX].x} {1 - va.TexCoords[UV_INDEX].y}')
-					face_line += f' {v.index}/{uv_index}/{uv_index}'
-					uv_index += 1
-				lines.append(f'usemtl {material_lookup[c.MatIndices[ti]]}')
-				lines.append(face_line)
-				
-	print('writing .obj file')
-	with open(f"./out/{model_name}.obj", 'w', encoding='UTF8') as f:
-		f.write('\n'.join(lines))
 
+	match output_format:
+		case 'gltf' | 'glb':
+			def get_buffer(len):
+				ret = io.BytesIO(b'\x00' * len)
+				ret.seek(0, os.SEEK_SET)
+				return ret
+			
+			print(f'converting to {output_format}')
+			# the buffers are definitively too big, but it should help out with processing speed and it's simpler this way
+			gltf_strp_idx = [get_buffer(12 * num_tris) for _ in range(len(material_lookup))]
+			gltf_vert_pos = [get_buffer(12 * num_verts) for _ in range(len(material_lookup))]
+			gltf_vert_nrm = [get_buffer(12 * num_verts) for _ in range(len(material_lookup))]
+			gltf_vert_col = [get_buffer(16 * num_verts) for _ in range(len(material_lookup))]
+			gltf_vert_tan = [get_buffer(16 * num_verts) for _ in range(len(material_lookup))]
+			gltf_vert_uvs = [[get_buffer(16 * num_verts) for _ in range(max_tex_coords)] for _ in range(len(material_lookup))]
+
+			mat_tri_indicies = [-1] * len(material_lookup)
+			for lod in sorted(LODError.keys()):
+				for c in LODError[lod]:
+					for ti, t in enumerate(c.StripIndices):
+						material_id = c.MatIndices[ti]
+						new_ti = mat_tri_indicies[material_id]
+						for vi in t.xyz():
+							v = c.Vertices[vi]
+							va = c.VertAttrs[vi]
+							gltf_strp_idx[material_id].write(struct.pack('<I', new_ti := new_ti + 1))
+							gltf_vert_pos[material_id].write(struct.pack('<fff', *(v * EXPORT_SCALE).xzy()))
+							gltf_vert_nrm[material_id].write(struct.pack('<fff', *va.Normal.xzy()))
+							gltf_vert_col[material_id].write(struct.pack('<ffff', *va.Color.xyzw()))
+							if has_tangents:
+								gltf_vert_tan[material_id].write(struct.pack('<ffff', va.TangentX_AndSign.xzyw()))
+							for tex_coord_id in range(max_tex_coords):
+								gltf_vert_uvs[material_id][tex_coord_id].write(struct.pack('<ff', *va.TexCoords[tex_coord_id].xy()))
+
+						mat_tri_indicies[material_id] = new_ti
+
+			gltf = pygltflib.GLTF2(
+				scene=0,
+				scenes=[pygltflib.Scene(nodes=[0])],
+				nodes=[pygltflib.Node(mesh=0)],
+				meshes=[pygltflib.Mesh(name=model_name)]
+			)
+
+			state = {
+				'blob': b'',
+				'accesor_index': -1
+			}
+			def add_buffer_accessor(data: io.BytesIO, componentType:int, elem_size:int, type: int, target: int, normalized:bool|None=False):
+				accesor_index = state['accesor_index'] + 1
+				state['accesor_index'] = accesor_index
+				buffer_offset = len(state['blob'])
+				buffer_len = data.tell()
+				gltf.accessors.append(pygltflib.Accessor(
+					bufferView = accesor_index,
+					componentType = componentType,
+					count = buffer_len // elem_size,
+					type = type,
+					normalized=normalized
+				))
+				gltf.bufferViews.append(pygltflib.BufferView(
+					buffer = 0,
+					byteOffset = buffer_offset,
+					byteLength = buffer_len,
+					target = target
+				))
+				data.seek(0, os.SEEK_SET)
+				state['blob'] += data.read(buffer_len)
+				return accesor_index
+				
+
+			for material_id, material_name in material_lookup.items():
+				gltf.materials.append(pygltflib.Material(doubleSided=True, name=material_name))
+				
+				attributes = pygltflib.Attributes()
+				
+				# positions
+				attributes.POSITION = add_buffer_accessor(
+					data = gltf_vert_pos[material_id],
+					componentType = pygltflib.FLOAT,
+					elem_size = 12,
+					type = pygltflib.VEC3,
+					target = pygltflib.ARRAY_BUFFER
+				)
+				
+				# normals
+				attributes.NORMAL = add_buffer_accessor(
+					data = gltf_vert_nrm[material_id],
+					componentType = pygltflib.FLOAT,
+					elem_size = 12,
+					type = pygltflib.VEC3,
+					target = pygltflib.ARRAY_BUFFER,
+					normalized=True
+				)
+
+				# vertex colors
+				attributes.COLOR_0 = add_buffer_accessor(
+					data = gltf_vert_col[material_id],
+					componentType = pygltflib.FLOAT,
+					elem_size = 16,
+					type = pygltflib.VEC4,
+					target = pygltflib.ARRAY_BUFFER,
+					normalized=True
+				)
+
+				# tangents
+				if has_tangents:
+					attributes.TANGENT = add_buffer_accessor(
+						data = gltf_vert_tan[material_id],
+						componentType = pygltflib.FLOAT,
+						elem_size = 16,
+						type = pygltflib.VEC4,
+						target = pygltflib.ARRAY_BUFFER,
+						normalized=True
+					)
+
+				# uvs
+				for tex_coord_id in range(max_tex_coords):
+					accesor_index = add_buffer_accessor(
+						data = gltf_vert_uvs[material_id][tex_coord_id],
+						componentType = pygltflib.FLOAT,
+						elem_size = 8,
+						type = pygltflib.VEC2,
+						target = pygltflib.ARRAY_BUFFER,
+					)
+					match tex_coord_id:
+						case 0: attributes.TEXCOORD_0 = accesor_index
+						case 1: attributes.TEXCOORD_1 = accesor_index
+						case _: setattr(attributes, f'TEXCOORD_{tex_coord_id}', accesor_index)
+
+				# tri indices
+				primitive = pygltflib.Primitive(
+					material = material_id,
+					attributes = attributes,
+					indices = add_buffer_accessor(
+						data = gltf_strp_idx[material_id],
+						componentType = pygltflib.UNSIGNED_INT,
+						elem_size = 4,
+						type = pygltflib.SCALAR,
+						target = pygltflib.ELEMENT_ARRAY_BUFFER
+					)
+				)
+
+				gltf.meshes[0].primitives.append(primitive)
+
+			gltf.buffers.append(pygltflib.Buffer(byteLength=len(state['blob'])))
+			gltf.set_binary_blob(state['blob'])
+
+			[b.close() for b in gltf_strp_idx]
+			[b.close() for b in gltf_vert_pos]
+			[b.close() for b in gltf_vert_nrm]
+			[b.close() for b in gltf_vert_col]
+			[b.close() for b in gltf_vert_tan]
+			[[b.close() for b in l] for l in gltf_vert_uvs]
+			
+			print(f'saving {output_format}')
+			gltf.save(f"./out/{model_name}.{output_format}")
+
+		case _:
+			print('converting to obj')
+			lines = list()
+			vertex_index = 1
+			uv_index = 1
+			lines.append(f'o {model_name}')
+			for lod in sorted(LODError.keys()):
+				for c in LODError[lod]:
+					for vi, v in enumerate(c.Vertices):
+						assert(v is not None)
+						if v.index is None:
+							v.index = vertex_index
+							vertex_index += 1
+							line = f"v {v.x*EXPORT_SCALE} {v.z*EXPORT_SCALE} {v.y*EXPORT_SCALE}"
+							lines.append(line)
+					
+					for ti, t in enumerate(c.StripIndices):
+						assert(t is not None)
+						face_line = 'f '
+						for vi in t.xyz():
+							va = c.VertAttrs[vi]
+							v = c.Vertices[vi]
+							assert(v is not None)
+							lines.append(f'vn {va.Normal.x} {va.Normal.z} {va.Normal.y}')
+							lines.append(f'vt {va.TexCoords[UV_INDEX].x} {1 - va.TexCoords[UV_INDEX].y}')
+							face_line += f' {v.index}/{uv_index}/{uv_index}'
+							uv_index += 1
+						lines.append(f'usemtl {material_lookup[c.MatIndices[ti]]}')
+						lines.append(face_line)
+
+			print('writing .obj file')
+			with open(f"./out/{model_name}.obj", 'w', encoding='UTF8') as f:
+				f.write('\n'.join(lines))
+
+	
 	
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(
 		prog='simple-nanite-parser',
 		description='A simple parser for cooked Unreal Engine 5.3+ static meshes that use nanite.'
 	)
+	valid_formats = ['glb','gltf','obj']
 	parser.add_argument('filename', help="Cooked uasset or json file to parse.")
-	
+	parser.add_argument('--format', '-f', choices=valid_formats, default='glb', help="The format to use for the output file")
+
 	args = parser.parse_args()
 	if not isinstance(args.filename, str):
 		raise ValueError("File name missing")
+	if (not isinstance(args.format, str)) or (args.format not in valid_formats):
+		raise ValueError("File name missing")
 	
-	main(os.path.splitext(args.filename)[0])
+	main(os.path.splitext(args.filename)[0], args.format)

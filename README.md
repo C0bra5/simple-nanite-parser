@@ -7,7 +7,6 @@ A simple parser for cooked Unreal Engine 5.3+ static meshes that uses Nanite wit
     - If you want to use the DX12 Compute Shader extraction method You'll need to build compushady yourself.
 - [DotNET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) (to build FModel and CUE4Parse)
 - A modified version of FModel with the fixes I've made for nanite (see instructions below)
-- A bit of storage, the .obj files this generates can get quite chunky (100MB+)
 
 ## How to use:
 1. As my fix for CUE4Parse hasn't been accepted into the main repo yet, you'll have to download a custom version of FModel with my fixes for it: 
