@@ -20,7 +20,7 @@ A simple parser for cooked Unreal Engine 5.3+ static meshes that uses Nanite wit
 5. Click the file name in the log at the bottom of FModel to open the directory where the files were extracted.
 6. Copy the full path of the file eg: `C:/FModel_extracts/path/to/file.json`
 7. Run the script: `python __main__.py "C:/FModel_extracts/path/to/file.json"`
-8. Your .obj will be waiting in the `out` folder.
+8. Your file will be waiting in the `out` folder.
 
 ## The script in action:
 
