@@ -93,13 +93,6 @@ def main(TEST_PATH: str, output_format = 'gltf'):
 	with open(UASSET, 'rb') as asset, open(UBULK, 'rb') as bulk:
 		asset.seek(uasset_offset, os.SEEK_SET)
 		resources = FResources(asset, bulk)
-	
-	print('identifying high quality lod error threshold')
-	max_lod_exclusive = math.inf
-	for node in resources.HierarchyNodes:
-		for slice in node:
-			if slice.MinLODError < 0:
-				max_lod_exclusive = min(max_lod_exclusive, slice.MaxParentLODError)
 
 	# print("validating python processed data using compute shader")
 	# from hlsl_runner import extract_data_using_compute_shader
@@ -157,17 +150,16 @@ def main(TEST_PATH: str, output_format = 'gltf'):
 	# 				assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['uv'][txc_i][0], c.VertAttrs[vi].TexCoords[txc_i].x))
 	# 				assert(float_check(hlsl_data['ver_attr'][pi][ci][vi]['uv'][txc_i][1], c.VertAttrs[vi].TexCoords[txc_i].y))
 
-
-
 	has_tangents = False
 	max_tex_coords = 0
 	num_tris = 0
 	num_verts = 0
 	print('parsing high quality clusters')
+	HIGH_QUALITY_FLAG = FNaniteStreamingPage.FCluster.FClusterFlags(7)
 	LODError: dict[float, list['FNaniteStreamingPage.FCluster']] = {}
 	for pi, p in enumerate(resources.PageData):
 		for ci, c in enumerate(p.Clusters):
-			if c.LODError < max_lod_exclusive:
+			if c.Flags == HIGH_QUALITY_FLAG:
 				has_tangents = has_tangents or c.bHasTangents
 				max_tex_coords = max(max_tex_coords, c.NumUVs)
 				c.local_page_index = pi
