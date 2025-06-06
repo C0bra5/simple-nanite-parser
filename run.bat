@@ -34,7 +34,7 @@ goto python_missing
 :python_missing
 echo unable to identify a version of python greater or equal to 3.12
 echo check to make sure you have the right dependencies installed
-goto end
+goto bad_end
 
 :setup_with_python
 echo creating venv using python
@@ -49,11 +49,11 @@ goto check_venv_creation
 :check_venv_creation
 if not !errorlevel!==0 (
 	echo failed to create venv!
-	goto end
+	goto bad_end
 )
 if not exist "./.venv/Scripts/activate.bat" (
 	echo failed to create venv!
-	goto end
+	goto bad_end
 )
 call "./.venv/Scripts/activate.bat"
 python -m pip install -r "requirements.txt"
@@ -68,8 +68,13 @@ python __main__.py %1
 if exist ".venv/Scripts/deactivate.bat" (
 	call ".venv/Scripts/deactivate.bat"
 )
+if not !errorlevel!==0 goto bad_end
+goto end
+
+:bad_end
+pause
+goto end
 
 :end
 popd
 endlocal
-pause
