@@ -15,8 +15,8 @@ This is a simple parser for cooked Unreal Engine 5.3+ static meshes that uses Na
 2. Start the custom version of FModel using `start_fmodel.bat`.
     - or you can manually launch it, it's in `FModel/FModel/bin/Debug/net8.0-windows/win-x64/FModel.exe`.
 3. Find the static mesh you want to dump in FModel.
-4. Right-click the entry again and select `Export Raw Data (.uasset)`
-5. Right-click the entry and select `Save Properties (.json)`
+4. Right-click the entry and select `Export Raw Data (.uasset)`
+5. Right-click the entry again and select `Save Properties (.json)`
 6. Drag and drop one of the files FModel created onto the `extract.bat` file in this project's folder.
     - You may have to wait a bit for the program to complete its work, especially with larger meshes.
 8. Your file will be waiting in the `out` folder.
