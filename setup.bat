@@ -95,10 +95,19 @@ echo Python: OK!
 
 rem download FModel if the user forgot to use --recursive during the clone
 if not exist "./FModel/FModel/FModel.sln" (
-	git submodule update --init --recursive
-	if not !errorlevel!==0 (
-		echo failed to clone custom version of FModel
-		goto bad_end
+	if exist "./.git" (
+		git submodule update --init --recursive
+		if not !errorlevel!==0 (
+			echo failed to clone custom version of FModel
+			goto bad_end
+		)
+	) else (
+		rem in case they downloaded the zip from github
+		git clone https://github.com/C0bra5/FModel -b nanite-patch-stable --recursive
+		if not !errorlevel!==0 (
+			echo failed to clone custom version of FModel
+			goto bad_end
+		)
 	)
 )
 
