@@ -1,10 +1,9 @@
 # Simple Nanite Parser
-A simple parser for cooked Unreal Engine 5.3+ static meshes that uses Nanite with maximum quality. FModel only exports the fallback mesh which tends to be very low quality.
+This is a simple parser for cooked Unreal Engine 5.3+ static meshes that uses Nanite with maximum quality. FModel only exports the fallback mesh, which tends to be low quality.
 
 ## Requirements:
 - [Python 3.12](https://www.python.org/downloads/release/python-31210/)
     - 3.12 is the minimum version.
-    - If you want to use the DX12 Compute Shader extraction method You'll need to build compushady yourself.
 - [DotNET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) (to build FModel and CUE4Parse)
 - A modified version of FModel with the fixes I've made for nanite (see instructions below)
 
@@ -17,12 +16,10 @@ A simple parser for cooked Unreal Engine 5.3+ static meshes that uses Nanite wit
 2. Find the static mesh you want to dump in FModel.
 3. Right-click the entry again and select `Export Raw Data (.uasset)`
 4. Right-click the entry and select `Save Properties (.json)`
-5. Click the file name in the log at the bottom of FModel to open the directory where the files were extracted.
-6. Copy the full path of the file eg: `C:/FModel_extracts/path/to/file.json`
-7. Run the script: `python __main__.py "C:/FModel_extracts/path/to/file.json"`
+5. Drag and drop one of the files FModel created onto the `run.bat` file in this project's folder.
+6. Wait a bit, the program takes a while to run, especially with larger meshes.
 8. Your file will be waiting in the `out` folder.
 
 ## The script in action:
 
-https://github.com/user-attachments/assets/2b7efd84-e7a1-452a-ae0a-ae956422734c
-
+https://github.com/user-attachments/assets/af5ea32c-eace-4b33-822a-69fca2052a5e
