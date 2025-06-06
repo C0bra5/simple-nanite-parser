@@ -4,22 +4,21 @@ This is a simple parser for cooked Unreal Engine 5.3+ static meshes that uses Na
 ## Requirements:
 - [Python 3.12](https://www.python.org/downloads/release/python-31210/)
     - 3.12 is the minimum version.
-- [DotNET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) (to build FModel and CUE4Parse)
-- A modified version of FModel with the fixes I've made for nanite (see instructions below)
+- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+    - Used to build the custom version of FModel and CUE4Parse needed for this project.
 
 ## How to use:
-1. As my fix for CUE4Parse hasn't been accepted into the main repo yet, you'll have to download a custom version of FModel with my fixes for it: 
-    1. Download the source code for FModel: `git clone https://github.com/4sval/FModel --recursive`
-    2. Open the folder you've downloaded and delete the CUE4Parse folder and replace it with a version of CUE4Parse with my fixes `git clone https://github.com/C0bra5/CUE4Parse -b nanite-patch-stable`
-    4. Open `/FModel/CUE4Parse/CUE4Parse.sln` and build the solution (or else FModel won't be able to build)
-    5. Open `/FModel/FModel.sln` and build/launch the application.
-2. Find the static mesh you want to dump in FModel.
-3. Right-click the entry again and select `Export Raw Data (.uasset)`
-4. Right-click the entry and select `Save Properties (.json)`
-5. Drag and drop one of the files FModel created onto the `run.bat` file in this project's folder.
-6. Wait a bit, the program takes a while to run, especially with larger meshes.
+1. Run `setup.bat` to ensure you have the correct dependencies installed, download the custom version of FModel and CUE4Parse this project requires, and automatically build the custom version of FModel.
+    - You only need to do this step once.
+2. Start the custom version of FModel using `start_fmodel.bat`.
+    - or you can manually launch it, it's in `FModel/FModel/bin/Debug/net8.0-windows/win-x64/FModel.exe`.
+3. Find the static mesh you want to dump in FModel.
+4. Right-click the entry again and select `Export Raw Data (.uasset)`
+5. Right-click the entry and select `Save Properties (.json)`
+6. Drag and drop one of the files FModel created onto the `extract.bat` file in this project's folder.
+    - You may have to wait a bit for the program to complete its work, especially with larger meshes.
 8. Your file will be waiting in the `out` folder.
 
-## The script in action:
+## Video Example:
 
-https://github.com/user-attachments/assets/af5ea32c-eace-4b33-822a-69fca2052a5e
+https://github.com/user-attachments/assets/c238b44e-559a-4f1e-858a-bac22af6f56d
