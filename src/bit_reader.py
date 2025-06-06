@@ -1,4 +1,4 @@
-from unreal_io import *
+from src.unreal_io import *
 from typing import BinaryIO
 import os
 

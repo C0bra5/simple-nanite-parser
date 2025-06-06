@@ -1,5 +1,5 @@
-from nanite_constants import *
-from hlsl_constants import *
+from src.nanite_constants import *
+from src.hlsl_constants import *
 
 from compushady import HEAP_READBACK, Buffer, HEAP_UPLOAD, Compute
 from compushady.formats import R8_UINT

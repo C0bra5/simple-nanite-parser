@@ -1,5 +1,5 @@
-from unreal_io import *
-from FNaniteStreamingPage import FNaniteStreamingPage
+from src.unreal_io import *
+from src.FNaniteStreamingPage import FNaniteStreamingPage
 from typing import BinaryIO
 import enum
 import io

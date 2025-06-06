@@ -1,8 +1,8 @@
-from unreal_io import *
-from nanite_constants import *
-from bit_reader import FBitStreamReader
+from src.unreal_io import *
+from src.nanite_constants import *
+from src.bit_reader import FBitStreamReader
 from typing import BinaryIO
-import FResources
+import src.FResources as FResources
 import io
 import os
 import enum

@@ -1,7 +1,7 @@
-from unreal_io import *
-from nanite_constants import *
-from FResources import FResources
-import FNaniteStreamingPage
+from src.unreal_io import *
+from src.nanite_constants import *
+from src.FResources import FResources
+import src.FNaniteStreamingPage as FNaniteStreamingPage
 import json
 import argparse
 import pygltflib
