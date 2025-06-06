@@ -1,0 +1,4 @@
+[submodule "FModel"]
+	path = FModel
+	url = https://github.com/C0bra5/FModel
+	branch = nanite-patch-stable
