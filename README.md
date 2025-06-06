@@ -4,6 +4,8 @@ This is a simple parser for cooked Unreal Engine 5.3+ static meshes that uses Na
 ## Requirements:
 - [Python 3.12](https://www.python.org/downloads/release/python-31210/)
     - 3.12 is the minimum version.
+- [Git](https://github.com/git-guides/install-git)
+    - Used to download the custom version of FModel and CUE4Parse needed for this project.
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
     - Used to build the custom version of FModel and CUE4Parse needed for this project.
 
