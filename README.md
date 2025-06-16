@@ -1,5 +1,5 @@
 > [!IMPORTANT]  
-> This project is now archived as nanite parsing is now supported directly within the latest versions of [FModel](https://github.com/4sval/FModel) and [CUE4Parse](https://github.com/FabianFG/CUE4Parse)
+> This project is now archived as the latest versions of [FModel](https://github.com/4sval/FModel) and [CUE4Parse](https://github.com/FabianFG/CUE4Parse) natively support nanite mesh extraction for all games using UE 5.0 to UE 5.3.
 
 # Simple Nanite Parser
 This is a simple parser for cooked Unreal Engine 5.3+ static meshes that uses Nanite with maximum quality. FModel only exports the fallback mesh, which tends to be low quality.
