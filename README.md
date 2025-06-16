@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> This project is now archived as nanite parsing is now supported directly within the latest versions of [FModel](https://github.com/C0bra5/FModel/tree/nanite-patch-stable) and [CUE4Parse](https://github.com/C0bra5/CUE4Parse/tree/nanite-patch-stable)
+
 # Simple Nanite Parser
 This is a simple parser for cooked Unreal Engine 5.3+ static meshes that uses Nanite with maximum quality. FModel only exports the fallback mesh, which tends to be low quality.
 
